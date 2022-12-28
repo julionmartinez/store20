@@ -1,0 +1,98 @@
+.card-product{
+    padding: 12px;
+    border-radius: 16px;
+    width: 120px;
+    height: 280px;
+    display: grid;
+    grid-template-rows: auto 2fr;
+    row-gap: 8px;
+    // border: 1px solid #BEC9C7;
+        .container-image-product{
+            display: grid;
+            // justify-content: center;
+            align-content: space-between;
+            width: 100px;
+            height: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.162);
+            border-radius: 16px;
+            padding: 8px;
+            .section-button-offer{
+
+                .btn-offer{
+                    background-color: #FF5449;
+                    color: white;
+                    height: 24px;
+                    display: flex;
+                    align-items: center;
+                    border-radius: 12px;
+                    border: none;
+                    font-weight: 600;
+                    .icon{
+                        font-size: 1.2rem;
+                        object-fit: contain;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+            }
+            .section-icon-add{
+                display: flex;   
+                justify-content: flex-end;
+                width: 100%;
+                .btn-add{
+                    cursor: pointer;
+                    border-radius: 20px;
+                    display: flex;
+                    align-items: center;
+                    width: fit-content;
+                    background-color: #634BBC;
+                    border: none;
+                    padding: 4px 12px;
+                    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.289);
+                    .span-text{
+                    color: white;
+                    font-weight: 600;
+                    }
+                    .icon-add{
+                        color: white;
+                        // width: fit-content;
+                        // height: fit-content;
+                        // object-fit: contain;
+                        // font-size: rem;
+        
+                    } 
+                    
+                }
+            
+            }
+    
+        }
+        
+    
+  
+    .container-info-product{
+        display: grid;
+        align-content: flex-start;
+        // row-gap: 8px;
+        .price-product{
+            font-size: 1.2rem;
+            font-weight: 700;
+          
+        }
+        .name-product{
+            font-size: 1rem;
+            font-weight: 600;
+            
+        }
+        .description-product{
+            font-size: rem;
+        }
+        
+    }
+
+}

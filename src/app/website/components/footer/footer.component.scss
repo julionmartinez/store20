@@ -1,0 +1,207 @@
+.footer-website{
+    margin-top: 60px;
+    background-color: #D9D9D9;
+    display: grid;
+    grid-template-columns: auto minmax(325px,1024px) auto;
+    padding: 24px 0;
+    row-gap: 24px;
+    .container-gral-footer{
+        display: grid;
+        grid-column:  2 / 3;
+        .container-section-top-footer{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px 12px;
+            .section-foo{
+                min-width: fit-content;
+                display: grid;
+                align-content: flex-start;
+                
+                .title-section{
+                    font-weight: 600;
+                }
+                .btn-action{
+                    display: flex;
+                    justify-content: flex-start;
+                    .icon{
+                        margin-right: 8px;
+                    }
+                    .icon-svg{
+                        margin-right: 8px;
+                        width: 24px;
+                        height: 24px;
+                        object-fit: contain;
+                        object-position: center center;
+                    }
+                }
+            }
+            .section-social-media{
+                display: grid;
+                align-content: flex-start;
+                row-gap: 24px;
+                .content-links-apps{
+                    display: flex;
+                    justify-content: space-between;
+                    column-gap: 12px;
+                    .link-app{
+                       .image-app{
+                        object-fit: contain;
+                        object-position: center center;
+                        width: 100%;
+                       }
+                    }
+                }
+                .content-links-social-media{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    column-gap: 12px;
+                    align-items: center;
+                    
+                    .text-title{
+                        font-weight: 500;
+                        justify-self: flex-end;
+                        align-self: center;
+                        margin: 0;
+
+
+                    }
+                    .links-social-media{
+                        display: flex;
+                        justify-content: space-between;
+                        .link{
+                            img{
+                                width: 24px;
+                                height: 24px;
+                                object-fit: contain;
+                                object-position: center center;
+                            }
+
+                        }
+                       
+                    }
+
+
+                }
+
+            }
+    
+        }
+
+    }
+    .contain-payment{
+        grid-column:  2 / 3;
+        // justify-items: center;
+
+        .title{
+            font-weight: 600;
+            text-align: center;
+            justify-self: center;
+
+        }
+        .links{
+            display: flex;
+            justify-content: center;
+            .link-payment{
+                .icon{
+                    width: 32px;
+                    height: 32px;
+                    object-fit: contain;
+                    object-position: center center;
+                }
+
+            }
+
+        }
+
+    }
+    
+
+}
+
+@media screen and (max-width:900px) {
+    .footer-website{
+        grid-template-columns: 12px minmax(325px,1024px) 12px;
+        
+        .container-gral-footer{
+            .container-section-top-footer{
+                .section-foo{                 
+                    .title-section{
+                    }
+                    .btn-action{
+                        .icon{
+                        }
+                        .icon-svg{
+                        }
+                    }
+                }
+                .section-social-media{
+
+                    .content-links-apps{
+
+                        .link-app{
+                            img{
+                                object-fit: contain;
+                            }
+
+                        }
+                    }
+                    .content-links-social-media{
+     
+                        
+                        .text-title{
+
+    
+    
+                        }
+                        .links-social-media{
+
+                            .link{
+                                img{
+
+                                }
+    
+                            }
+                           
+                        }
+    
+    
+                    }
+    
+                }
+        
+            }
+    
+        }
+        .contain-payment{
+            grid-column:  2 / 3;
+            // justify-items: center;
+    
+            .title{
+                font-weight: 600;
+                text-align: center;
+                justify-self: center;
+    
+            }
+            .links{
+                display: flex;
+                justify-content: center;
+                .link-payment{
+                    .icon{
+                        width: 32px;
+                        height: 32px;
+                        object-fit: contain;
+                        object-position: center center;
+                    }
+    
+                }
+    
+            }
+    
+        }
+        
+    
+    }
+    
+    
+}

@@ -1,0 +1,54 @@
+<mat-toolbar color="primary" class="toolbar">
+    <section class="top-nav" >
+        <section class="container-logo" >
+            <a routerLink="/home" class="btn-logo" mat-icon-button>
+                <img class="icon-logo"  src="https://firebasestorage.googleapis.com/v0/b/markettutti.appspot.com/o/image-store20%2Flogo-line.svg?alt=media&token=95c6cae1-ea69-4b50-a7c0-fdfe80b825bb" alt="">
+            </a>
+        </section>
+        <section class="container-btn-categories" >
+            <a class="btn-category btn-model-01" routerLink="/category"  mat-button>
+                <mat-icon class="icon" >category</mat-icon>
+                <span class="text-btn" >Categorías</span>
+            </a>
+            <a class="btn-category-mobile" href="" mat-icon-button>
+                <mat-icon class="icon" >category</mat-icon>
+                <mat-icon>expand_more</mat-icon>
+            </a>
+        </section>
+       <section class="container-input" >
+        <mat-icon class="icon-search" >search</mat-icon>
+        <input placeholder="Busca tus dulces favoritos"  type="text" class="input-search" >
+       </section>
+
+       <section class="container-btn-rigth" >
+        <a routerLink="/user/login" class="btn-model-01 btn-login " href="" mat-button>
+            <mat-icon class="icon" >account_circle</mat-icon>
+            <span class="text-btn"  >Iniciar sesión</span>
+        </a>
+
+        <a class="btn-login-mobile" mat-icon-button>
+            <mat-icon class="icon" >account_circle</mat-icon>
+            <mat-icon>expand_more</mat-icon>
+        </a>
+
+        <a class="btn-cart" href="" mat-icon-button >
+            <mat-icon class="icon-cart" >shopping_cart</mat-icon>
+        </a>
+       </section>
+    </section>
+</mat-toolbar>
+
+<nav class="nav-offers" >
+    <section class="content-links-offers">
+     <div class="btn-link-offer"  href="">
+         <mat-icon class="icon" >local_offer</mat-icon>
+         <span class="text" >10% de descuento en tu primer compra</span>
+     </div>
+     <mat-divider vertical="true" ></mat-divider>
+ 
+     <div class="btn-link-offer" href="">
+         <mat-icon class="icon" >local_shipping</mat-icon>
+         <span class="text" >Envío gratis a partir de $300.00*</span>
+     </div>
+    </section>
+ </nav>

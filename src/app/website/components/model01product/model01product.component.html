@@ -1,0 +1,15 @@
+<section class="card-product" >
+    <picture class="container-image-product" >
+        <img class="image-product" src="{{product?.urlImg}}" alt="">
+    </picture>
+    <section class="section-icon-add" >
+      <button class="btn-add" color="primary" mat-icon-button >
+        <mat-icon color="" class="icon-add" >add_circle</mat-icon>
+      </button>
+    </section>
+   <section class="container-info-product" >
+    <p class="price-product" >{{product?.price | currency}}</p>
+    <p class="name-product" >{{product?.nameProduct}}</p>
+    <p class="description-product" >{{product?.description}}</p>
+   </section>
+</section>

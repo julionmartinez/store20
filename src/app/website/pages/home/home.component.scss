@@ -1,0 +1,25 @@
+
+.section-hero-home{
+    padding: 0px 0 32px 0;
+    display: grid;
+    row-gap: 24px;
+    
+    
+}
+
+.contianer-main-home{
+    display: grid;
+    row-gap: 24px;
+    .content-image-offer{
+        display: grid;
+        .image{
+            width: 100%;
+            object-fit: contain;
+            object-position: center center;
+        }
+    }
+    
+    
+}
+
+

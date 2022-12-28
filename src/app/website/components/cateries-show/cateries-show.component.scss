@@ -1,0 +1,45 @@
+.section-categories{
+    display: grid;
+  
+    .title-section-category{
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+    .list-categories{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        column-gap: 16px;
+      
+        .content-image-offer{
+            display: flex;
+            justify-content: center;
+            .image{
+                width: 100%;
+                object-fit: contain;
+                object-position: center center;
+
+            }
+        }
+    }
+}
+
+@media screen and (max-width:820px) {
+    .section-categories{
+
+        .title-section-category{
+
+        }
+        .list-categories{
+            grid-template-columns: repeat(2,1fr);
+          
+            .content-image-offer{
+
+                .image{
+                    width: 80%;
+                }
+            }
+        }
+    }
+
+    
+}

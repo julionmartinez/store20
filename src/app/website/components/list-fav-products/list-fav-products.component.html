@@ -1,0 +1,10 @@
+<section class="content-list" >
+    <p class="title-list" >Los favoritos</p>
+    <section class="containter-product-list" >
+
+        <ng-container *ngFor="let product of productList" >
+            <app-model01product class="produc-model" [product]="product" ></app-model01product>
+        </ng-container>
+        
+    </section>
+</section>

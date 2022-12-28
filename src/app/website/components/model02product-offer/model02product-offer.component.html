@@ -1,0 +1,21 @@
+<section class="card-product" >
+      <picture class="container-image-product" style="background-image: url({{product?.urlImg}});" >
+        <section class="section-button-offer" >
+          <button class="btn-offer">
+           Oferta <mat-icon class="icon" >arrow_circle_down</mat-icon>
+          </button>
+        </section>
+        <section class="section-icon-add" >
+          <button class="btn-add" color="primary" >
+            <mat-icon color="" class="icon-add" >add</mat-icon>
+            <span class="span-text">Agregar</span>
+          </button>
+        </section>
+    </picture>
+   <section class="container-info-product" >
+    <p class="price-product" >{{product?.price | currency}}</p>
+    <p class="name-product" >{{product?.nameProduct}}</p>
+    <p class="description-product" >{{product?.description}}</p>
+   </section>
+</section>
+

@@ -1,0 +1,19 @@
+<section class="container-gral-list-best-product" >
+    <picture class="container-image-offer" >
+        <img class="image-offer" src="https://firebasestorage.googleapis.com/v0/b/markettutti.appspot.com/o/image-store20%2Fsave.png?alt=media&token=ca16383c-07cd-4ac9-9980-e50ce1b649e3" alt="">
+        <img class="image-offer-mobile" src="https://firebasestorage.googleapis.com/v0/b/markettutti.appspot.com/o/image-store20%2Foffer-delivery-free-mobile.png?alt=media&token=93de9bdc-6fbf-4b5d-be10-76f906466524" alt="">
+    </picture>
+    
+    <section class="content-list" >
+        <p class="title-list" >Nuestras mejores ofertas</p>
+        <section class="containter-product-list" >
+    
+            <ng-container *ngFor="let product of productList" >
+                <app-model02product-offer [product]="product" ></app-model02product-offer>
+            </ng-container>
+            
+        </section>
+    </section>
+</section>
+
+

@@ -1,0 +1,21 @@
+.container-pages{
+    display: grid;
+    grid-template-columns:  auto minmax(325px,1024px ) auto;
+    padding-top: 40px;
+    padding-bottom: 32px;
+    .content-page{
+        grid-column:  2 / 3;
+        
+    }
+}
+@media screen and (max-width:1046px) {
+    .container-pages{
+        display: grid;
+        grid-template-columns:  12px minmax(325px,1024px ) 12px;
+        padding-top: 16px;
+        .content-page{
+            
+        }
+    }
+    
+}

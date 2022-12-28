@@ -1,0 +1,12 @@
+<section class="container-gral-categories" >
+    <p class="title-categories-pages" >Nuestras categorias</p>
+    <section class="list-category" >
+        <ng-container *ngFor="let category of listCategories" >
+            <a class="link-category" routerLink="/list-product-categories/{{category.id}}" >
+                <picture class="container-img-category" >
+                    <img class="img-category" src="https://firebasestorage.googleapis.com/v0/b/markettutti.appspot.com/o/image-store20%2Fcategory.png?alt=media&token=a9e5a8ec-8d09-4b83-bc9b-23a6d5e25328" alt="">
+                </picture>
+            </a>
+        </ng-container>
+    </section>
+</section>

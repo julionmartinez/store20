@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "markettutti": {
+      "hosting": {
+        "detinmarin20": [
+          "detin20"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "markettutti"
+  }
+}

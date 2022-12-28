@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/detinmarin20",
+            "outputPath": "dist/detinmarin20/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,12 +25,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/theme/theme-detinmarin.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -93,15 +96,94 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/detinmarin20/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "detinmarin20:build:development",
+              "serverTarget": "detinmarin20:server:development"
+            },
+            "production": {
+              "browserTarget": "detinmarin20:build:production",
+              "serverTarget": "detinmarin20:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "detinmarin20:build:production",
+              "serverTarget": "detinmarin20:server:production"
+            },
+            "development": {
+              "browserTarget": "detinmarin20:build:development",
+              "serverTarget": "detinmarin20:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "ssr": "cloud-functions",
+            "prerender": true,
+            "firebaseProject": "markettutti",
+            "firebaseHostingSite": "detin20",
+            "functionName": "ssr_detinmarin20",
+            "functionsNodeVersion": "16",
+            "region": "us-central1",
+            "browserTarget": "detinmarin20:build:production",
+            "serverTarget": "detinmarin20:server:production",
+            "prerenderTarget": "detinmarin20:prerender:production",
+            "outputPath": "dist/detinmarin20/functions"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "6adaacad-9740-427e-a751-59eba4e67e44"
   }
 }

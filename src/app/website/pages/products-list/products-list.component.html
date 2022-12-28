@@ -1,0 +1,13 @@
+<section class="contain-gral-category" >
+    <p class="name-category" >{{category?.name}}</p>
+    <section class="container-product-list" >
+        <ng-container *ngFor="let product of listProducts" >
+            <section class="contain-product" >
+                <app-model01product [product]="product" ></app-model01product>
+            </section>
+
+        </ng-container>
+    </section>
+    <app-two-offer></app-two-offer>
+    <app-list-best-products></app-list-best-products>
+</section>

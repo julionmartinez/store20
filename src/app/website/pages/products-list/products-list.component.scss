@@ -1,0 +1,27 @@
+.contain-gral-category{
+    display: grid;
+    gap: 24px;
+
+    .name-category{
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+
+    
+    .container-product-list{
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 24px 12px;
+       
+
+        .contain-product{
+            flex-grow: 1;
+            flex-basis: 10%;
+            display: flex;
+            justify-content: center;
+            
+        }
+
+    }
+}

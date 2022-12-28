@@ -1,0 +1,52 @@
+.container-gral-pages-login{
+    display: grid;
+    justify-content: center;
+    min-height: 80vh;
+    .contain-tab{
+        display: grid;
+        row-gap: 24px;
+        padding-top: 24px;
+        .form{
+            display: grid;
+            gap: 8px;
+            // padding-top: 24px;
+        }
+        .container-btns-login-social-media{
+            display: grid;
+            row-gap: 12px;
+            .title-section-login-social-media{
+                font-weight: bold;
+                align-self: center;
+                text-align: center;
+            }
+            .btn-login-social-media{
+                .icon-social{
+                    margin-right: 8px;
+                    width: 24px;
+                    height: 24px;
+                    object-fit: contain;
+                    object-position: center center;
+                    align-self: center;
+                }
+            }
+            .btn-login-social-media.facebook{
+                background-color: #4077E3;
+                color: white;
+
+            }
+            .btn-login-social-media.google{
+                background-color: #E0E3E0;
+                color: #141D1B;
+
+            }
+            .btn-login-social-media.apple{
+                background-color: #141D1B;
+                color: white;
+
+            }
+
+        }
+
+    }
+    
+}

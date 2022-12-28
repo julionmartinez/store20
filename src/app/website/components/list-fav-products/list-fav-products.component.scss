@@ -1,0 +1,27 @@
+.content-list{
+    border-radius: 16px;
+    padding: 16px 12px;
+    display: grid;
+    .title-list{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    .containter-product-list{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        column-gap: 12px;
+        align-items: stretch;
+        overflow-x: scroll;
+        overscroll-behavior-x:contain ;
+        scroll-snap-type: x proximity;
+    }
+    .containter-product-list::-webkit-scrollbar {
+        display: none;
+      }
+    .containter-product-list{
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+
+}

@@ -1,0 +1,31 @@
+.container-gral-categories{
+    .title-categories-pages{
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .list-category{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px 12px;
+        .link-category{
+            flex-grow: 1;
+            flex-basis: 18%;
+            display: flex;
+            justify-content: center;
+            .container-img-category{
+                display: flex;
+                .img-category{
+                 width: 100%;
+                 max-width: 225px;
+                 min-width: 160px;
+                 object-fit: contain;
+                 object-position: center center;   
+
+                }
+
+            }
+        }
+    }
+
+
+}

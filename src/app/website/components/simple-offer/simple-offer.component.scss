@@ -1,0 +1,29 @@
+.content-image-offer-home{
+    display: flex;
+    .image-desktop{
+        width: 100%;
+        object-fit: contain;
+        object-position: center center;
+    }
+    .image-mobile{
+        display: none;
+       
+
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    .content-image-offer-home{
+        .image-desktop{
+            display: none;
+        }
+        .image-mobile{
+            display: block;
+            width: 100%;
+            object-fit: contain;
+            object-position: center center;
+        }
+
+    } 
+}

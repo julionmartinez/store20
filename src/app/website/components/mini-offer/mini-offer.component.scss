@@ -1,0 +1,11 @@
+.content-image-mini-offer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .image{
+        width: 100%;
+        max-width: 375px;
+        object-fit: contain;
+        object-position: center center;
+    }
+}

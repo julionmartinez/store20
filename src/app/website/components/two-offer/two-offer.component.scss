@@ -1,0 +1,40 @@
+.content-image-offer-two{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 8px;
+    justify-content: flex-start;
+    .image{
+        width: 100%;
+        // min-width: 220px;
+        // max-width: 325px;
+        object-fit: contain;
+        object-position: center center;
+    }
+
+}
+
+
+@media screen and (max-width:800px) {
+
+    .content-image-offer-two{
+        overflow-x: scroll;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        justify-content: flex-start;
+        grid-template-columns: repeat(3,60%);
+        .image{
+            width: 100%;
+        }
+    
+    }
+    .content-image-offer-two::-webkit-scrollbar {
+        display: none;
+      }
+    .content-image-offer-two{
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+    
+    
+}
+
