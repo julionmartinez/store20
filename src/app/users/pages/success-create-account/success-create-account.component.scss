@@ -1,0 +1,83 @@
+.container-gral-page-success-create-account{
+    display: grid;
+    row-gap: 16px;
+    padding: 0 8px;
+    align-items: center;
+    min-height: 60vh;
+    align-content: center;
+    .contain-picture{
+        display: flex;
+        justify-content: center;
+        justify-self: center;
+        .image{
+            object-fit: contain;
+            object-position: center center;
+            width: 50%;    
+        }
+
+    }
+    .contain-description{
+        display: grid;
+        row-gap: 12px;
+        .title-success{
+            font-size: 1.6rem;
+            font-weight: bold;
+            text-align: center;
+        }
+        .text-success{
+            max-width: 325px;
+            text-align:justify;
+            justify-self: center;
+        }
+    
+        .contain-progress-delivery{
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr;
+            align-items: center;
+            column-gap: 8px;
+            max-width: 600px;
+            min-width: 325px;
+            justify-self: center;
+            margin-top: 40px;
+            .contain-icon{
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                .icon{
+                    // width: 80px;
+                    // height: 80px;
+                    width: 100%;
+                    max-width: 80px;
+                    min-width: 24px;
+                    object-fit: contain;
+                    object-position: center center;
+    
+                }
+            }
+    
+            .contain-divider{
+                display: grid;
+                .divider{
+                    border-top-width: 4px ;
+                    
+                }
+    
+            }
+            
+            
+        }
+        .container-btns{
+            display: grid;
+            justify-content: center;
+            margin-top: 40px;
+            .btn-go-buy{
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+
+        }
+    
+
+    }
+    
+}

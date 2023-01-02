@@ -8,8 +8,10 @@
         padding-top: 24px;
         .form{
             display: grid;
-            gap: 8px;
             // padding-top: 24px;
+            .btn-register{
+                margin-top: 12px;
+            }
         }
         .container-btns-login-social-media{
             display: grid;

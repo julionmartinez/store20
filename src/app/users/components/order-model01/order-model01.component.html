@@ -1,0 +1,26 @@
+<mat-card class="card-order" >
+    <section class="section-top-card-order" >
+        <section class="con-first" >
+            <mat-icon color="primary" class="icon"  >summarize</mat-icon>
+            <span>Entregado {{shoppingCart?.dateAdd.seconds *1000 | date: 'dd-MMM-yy' }} </span>
+        </section>
+        <div class="contain-second" >
+            <span>Total: </span>
+            <span>{{shoppingCart?.total | currency}} </span>
+        </div>
+    </section>
+    <div class="section-second-card-order" >
+        <span class="text" >Artículos: 11</span>
+    </div>
+    <div>
+        <mat-icon>inventory_2</mat-icon>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-card-actions class="section-action" >
+        <button mat-raised-button color="primary" >Detalles</button>
+        <button mat-button color="accent" >Volver a comprar</button>
+
+       
+    </mat-card-actions>
+
+</mat-card>

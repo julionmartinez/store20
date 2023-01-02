@@ -2,22 +2,27 @@
     <mat-tab-group>
         <mat-tab label="Registrate" >
             <section class="contain-tab" >
-                <form action="" class="form form-login" >
-                    <!-- <p class="title-form" >Inicia sesión</p> -->
+                <form [formGroup]="formRegister" action="" class="form form-login" (ngSubmit)="onRegister()" >
+                    
+                    
                     <mat-form-field appearance="outline" >
                         <mat-label>Correo</mat-label>
-                        <input type="mail" matInput >
+                        <input formControlName="email" type="mail" matInput >
                     </mat-form-field>
+                    
                     <mat-form-field appearance="outline" >
                         <mat-label>Contraseña</mat-label>
-                        <input type="password" matInput >
+                        <input  formControlName="password" type="password" matInput >
                     </mat-form-field>
     
-                    <mat-form-field appearance="outline" >
+                    <!-- <mat-form-field appearance="outline" >
                         <mat-label>Confirma la contraseña</mat-label>
                         <input type="password" matInput >
-                    </mat-form-field>
-                    <button mat-raised-button color="primary" >Continuar</button>
+                    </mat-form-field> -->
+                    <mat-checkbox formControlName="statusAdult" color="accent" >Soy mayor de edad</mat-checkbox>
+                    <mat-checkbox formControlName="statusTermsAndConditions" color="accent" >Acepto términos y condiciones</mat-checkbox>
+                    <mat-checkbox formControlName="statusNoticeOfPrivace" color="accent" >He leído el aviso de privacidad</mat-checkbox>
+                    <button class="btn-register"  mat-raised-button color="primary" >Continuar</button>
                 </form>
                 <section class="container-btns-login-social-media" >
                     <p class="title-section-login-social-media" >También puedes continuar con:</p>
@@ -43,15 +48,15 @@
 
         <mat-tab label="Iniciar sesión" >
             <section class="contain-tab" >
-                <form action="" class="form form-login" >
+                <form [formGroup]="formLogin" (ngSubmit)="onLogin()" class="form form-login" >
                     <!-- <p class="title-form" >Inicia sesión</p> -->
                     <mat-form-field appearance="outline" >
                         <mat-label>Correo</mat-label>
-                        <input type="mail" matInput >
+                        <input formControlName="email" type="mail" matInput >
                     </mat-form-field>
                     <mat-form-field appearance="outline" >
                         <mat-label>Contraseña</mat-label>
-                        <input type="password" matInput >
+                        <input formControlName="'password" type="password" matInput >
                     </mat-form-field>
                     <button mat-raised-button color="primary" >Continuar</button>
                 </form>

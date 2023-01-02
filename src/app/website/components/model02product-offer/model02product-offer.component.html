@@ -1,21 +1,28 @@
 <section class="card-product" >
-      <picture class="container-image-product" style="background-image: url({{product?.urlImg}});" >
+      <picture class="container-image-product" style="background-image: url({{productBuy?.product?.urlImg}});" >
         <section class="section-button-offer" >
           <button class="btn-offer">
            Oferta <mat-icon class="icon" >arrow_circle_down</mat-icon>
           </button>
         </section>
         <section class="section-icon-add" >
-          <button class="btn-add" color="primary" >
-            <mat-icon color="" class="icon-add" >add</mat-icon>
-            <span class="span-text">Agregar</span>
-          </button>
+          <div class="container-btn-gral" [ngClass]="productBuy?.amount! > 0 ? 'container-btn-more-zero' : 'container-btn-zero'" color="primary" >
+            <button (click)="removeProduct()" class="btn btn-remove" mat-icon-button >
+              <mat-icon color="" class="icon-remove icon" >remove</mat-icon>
+            </button>
+            <span class="span-text">{{productBuy?.amount == 0 ? 'Agregar' : productBuy?.amount}} </span>
+            <button (click)="addProduct()" class="btn btn-add" mat-icon-button >
+              <mat-icon color="" class="icon-add icon" >add</mat-icon>
+            </button>
+            
+            
+          </div>
         </section>
     </picture>
    <section class="container-info-product" >
-    <p class="price-product" >{{product?.price | currency}}</p>
-    <p class="name-product" >{{product?.nameProduct}}</p>
-    <p class="description-product" >{{product?.description}}</p>
+    <p class="price-product" >{{productBuy?.priceIndividual| currency}}</p>
+    <p class="name-product" >{{productBuy?.product?.nameProduct}}</p>
+    <p class="description-product" >{{productBuy?.product?.description}}</p>
    </section>
 </section>
 

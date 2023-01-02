@@ -12,7 +12,7 @@
             </a>
             <a class="btn-category-mobile" href="" mat-icon-button>
                 <mat-icon class="icon" >category</mat-icon>
-                <mat-icon>expand_more</mat-icon>
+                <!-- <mat-icon>expand_more</mat-icon> -->
             </a>
         </section>
        <section class="container-input" >
@@ -23,16 +23,22 @@
        <section class="container-btn-rigth" >
         <a routerLink="/user/login" class="btn-model-01 btn-login " href="" mat-button>
             <mat-icon class="icon" >account_circle</mat-icon>
-            <span class="text-btn"  >Iniciar sesión</span>
+            <span class="text-btn"  >{{user == null ? 'Iniciar sesión' : 'Hola'}} </span>
         </a>
 
         <a class="btn-login-mobile" mat-icon-button>
             <mat-icon class="icon" >account_circle</mat-icon>
-            <mat-icon>expand_more</mat-icon>
+            <!-- <mat-icon>expand_more</mat-icon> -->
         </a>
 
+        
+
+        <button *ngIf="shoppingCart?.totalProducts != 0 " mat-button class="container-total-payment" >
+            <p class="total-payment" >{{shoppingCart?.total | currency}}</p>
+        </button>
+
         <a class="btn-cart" href="" mat-icon-button >
-            <mat-icon class="icon-cart" >shopping_cart</mat-icon>
+            <mat-icon [matBadge]="shoppingCart?.totalProducts" matBadgeColor="accent" class="icon-cart" >shopping_cart</mat-icon>
         </a>
        </section>
     </section>

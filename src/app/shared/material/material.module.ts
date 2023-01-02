@@ -6,7 +6,12 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatDividerModule} from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule} from '@angular/material/tabs';
+import { MatCheckboxModule} from'@angular/material/checkbox';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatCardModule} from '@angular/material/card';
+import { MatBadgeModule} from '@angular/material/badge';
+
 
 @NgModule({
   declarations: [],
@@ -18,6 +23,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatBadgeModule,
   ],
   imports: [
     CommonModule,
@@ -28,6 +37,11 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatBadgeModule,
+
   ]
 })
 export class MaterialModule { }

@@ -36,6 +36,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                       
                     }
                 }
 
@@ -44,29 +45,48 @@
                 display: flex;   
                 justify-content: flex-end;
                 width: 100%;
-                .btn-add{
-                    cursor: pointer;
-                    border-radius: 20px;
+                height: 28px;
+                .container-btn-gral{
                     display: flex;
+                    justify-content: space-between;
                     align-items: center;
-                    width: fit-content;
+                    height: 28px;
                     background-color: #634BBC;
-                    border: none;
                     padding: 4px 12px;
                     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.289);
+                    height: 24px;
+                    border-radius: 16px;
+                    width: 90px;
+                    transition: all 0.5s ease-in-out;
+
                     .span-text{
-                    color: white;
+                        color: white;
                     font-weight: 600;
                     }
-                    .icon-add{
-                        color: white;
-                        // width: fit-content;
-                        // height: fit-content;
-                        // object-fit: contain;
-                        // font-size: rem;
-        
-                    } 
+                    .btn{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 24px;
+                        height: 24px;
+
+                        .icon{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: white;
+    
+                        } 
+
+                    }  
                     
+                    
+                }
+                .container-btn-zero{
+                    transition: all 0.5s ease-in-out;
+                    .btn-remove{
+                        display: none;
+                    }
                 }
             
             }

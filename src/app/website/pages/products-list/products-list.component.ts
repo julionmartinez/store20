@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/core/services/products.service';
 import { Categories } from 'src/app/shared/interfaces/categories';
+import { ProductsBuy } from 'src/app/shared/interfaces/products-buy';
 import { ProductsGral } from 'src/app/shared/interfaces/products-gral';
 
 @Component({
@@ -15,7 +16,7 @@ export class ProductsListComponent implements OnInit {
   idCategory:string | null = null;
   category:Categories | null = null;
 
-  listProducts: ProductsGral[] = []
+  listProducts: ProductsBuy[] = []
 
 
   constructor(
@@ -34,7 +35,7 @@ export class ProductsListComponent implements OnInit {
       })
 
       this.productServices.getProductListOfCategory(this.idCategory).subscribe(productList=>{
-        this.listProducts = productList!
+        this.listProducts = this.productServices.convertProductGralToProductBuy(productList)
       })
       
 

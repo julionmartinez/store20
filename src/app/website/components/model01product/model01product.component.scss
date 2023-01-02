@@ -18,20 +18,73 @@
         display: flex;   
         justify-content: flex-end;
         width: 100%;
-        .btn-add{
-            cursor: pointer;
-            .icon-add{
-                width: fit-content;
-                height: fit-content;
-                object-fit: contain;
-                font-size: 2.4rem;
-
-            }  
+        .container-btn-normal{
+            display: flex;
+            background-color: #634bbc;
+            align-items: center;
+            height: 28px;
+            color: white;
+            justify-content: space-between;
+            transition: all 0.5s linear;
+            border-radius: 14px;
+            .btn-icon{
+                color: white;
+                width: 28px;
+                display: grid;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                
+                height: 28px;
+                .icon{
+                    height: 28px;
+                    width: 28;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    object-fit: contain;
+                    object-position: center;
+                    
+                }
+            }
         }
-               
+        .container-btn-zero{
+            width: 28px;
+            .btn-icon{
+                
+                // opacity: 0;
+            }
+            .btn-remove{
+                opacity: 0;
+                display: none;
+
+            }
+            .numer-amount{
+                opacity: 0;
+                display: none;
+            }
+        }
+        .container-btn{
+            gap: 8px;
+            padding: 0 8px;
+            width: auto;
+            transition: all 0.5s ease-in-out;
+            .btn-remove{
+                display: flex;
+                opacity: 1;
+                transition: all 2s ease-in-out;
+
+            }
+            .numer-amount{
+                color: white;
+                font-weight: bold;
+            }
+            
+        }              
     }
     .container-info-product{
         display: grid;
+        margin-top: 8px;
         .price-product{
             font-size: 1.2rem;
             font-weight: 700;
