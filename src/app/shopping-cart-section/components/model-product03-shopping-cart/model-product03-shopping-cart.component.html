@@ -1,0 +1,34 @@
+<section  class="card-product" >
+               
+                    <picture class="contain-image" >
+                        <img class="image-product" mat-card-avatar src="{{productBuy.product?.urlImg}}" alt="">
+                    </picture>
+                    <div class="container-info-product" >
+                        <section class="section-top-product-info" >
+                            <div class="contain-name-product" >
+                                <p class="name-product" >{{productBuy.product?.nameProduct}}</p>
+                                <p class="subtitle-product">{{productBuy.product?.subtitle}}- {{productBuy.priceIndividual| currency}}  </p>
+                            </div>
+                            <div class="content-price" >
+                                <p class="prices" >{{productBuy.total | currency}}</p>
+                                
+                            </div>
+                        </section>
+                        <section class="section-action-product" >
+                            <div class="container-btn-product" >
+                                <button (click)="removeProduct()"  class="btn-icon btn-remove" mat-icon-button >
+                                    <mat-icon class="icon icon-remove" >{{productBuy.amount == 1 ? 'delete' : 'remove'}}</mat-icon>
+                                </button>
+                                <span class="amount-product" >{{productBuy.amount}}</span>
+                                <button (click)="addProduct()"  class="btn-icon btn-add" mat-icon-button >
+                                    <mat-icon class="icon icon-add" >add</mat-icon>
+                                </button>
+                            </div>
+
+
+                        </section>
+                    
+                    </div>
+                    
+                
+            </section>

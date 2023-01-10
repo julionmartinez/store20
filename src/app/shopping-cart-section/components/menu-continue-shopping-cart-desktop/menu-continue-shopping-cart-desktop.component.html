@@ -1,0 +1,15 @@
+<section class="container-gral-menu-continue-desktop" >
+    <section class="container-btn" >
+        <button class="btn-continue" mat-flat-button color="primary" >Continuar</button>
+    </section>
+    <mat-divider></mat-divider>
+    <section class="container-info-payment" >
+        <p class="text-total" >Subtotal</p><span class="number-total" >{{ shoppingCart?.subtotal| currency}} </span>
+        <p  class="text-delivery">Envio</p><span class="number-delivery" [class.free]="shoppingCart?.costDelivery == 0" >{{ shoppingCart?.costDelivery == 0 ? 'Gratis' : shoppingCart?.costDelivery| currency}} </span>
+    </section>
+    <mat-divider></mat-divider>
+    <section class="container-total" >
+        <p class="text-total" >Total</p>
+        <p class="text-total-number" >{{ shoppingCart?.total| currency}}  </p>
+    </section>
+</section>

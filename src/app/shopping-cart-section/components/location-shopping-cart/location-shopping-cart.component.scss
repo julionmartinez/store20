@@ -1,0 +1,147 @@
+.container-gral-location{
+    display: grid;
+    row-gap: 12px;
+}
+
+.container-delivery-location{
+    display: grid;
+    row-gap: 12px;
+   
+    .container-type-delivery{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: none;
+        .btn-toggle{
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #d2d2d2;
+        }
+        .btn-toggle.active{
+            background-color: #634bbc;
+            color: white;
+        }
+        .btn-toggle-delivery-address{
+            border-radius:  16px 0 0 16px;
+        }
+        .btn-toggle-delivery-pickup{
+            border-radius:  0px 16px 16px 0px;
+
+        }
+
+
+    }
+
+}
+
+
+
+
+
+.container-select-day{
+    display: grid;
+    row-gap: 24px;
+    .container-list-btn-days{
+        display: flex;
+        column-gap: 8px ;
+        overflow-x: scroll;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        border: none;
+        padding: 12px 8px;
+
+        .container-btn{
+            display: grid;
+            row-gap: 4px;
+            justify-content: center;
+           
+            .name-text{
+                text-align: center;
+            }
+            .circle-date{
+                background-color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60px;
+                width: 60px;
+                border-radius: 30px;
+                border: 1px solid #ebebebd0;
+                box-shadow: 2px 2px 10px #d1d1d180;
+            }
+            .circle-date.active{
+                background-color: #634bbc;
+                color: white;
+                
+            }
+
+        }
+    }
+    .container-list-btn-days::-webkit-scrollbar {
+        display: none;
+      }
+    .container-list-btn-days{
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+    .container-select-hours{
+        .group-radio-select-hours{
+            display: grid;
+            row-gap: 8px;
+            .radio-button{
+                display: flex;
+                // border: 1px solid gray;
+                padding: 8px 12px;
+                .container-radio-selection{
+                    min-width: 300px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .text-range{
+                        font-weight: bold;
+
+                    }
+                    .text-range.text-hour{
+                        font-weight: lighter;
+                        font-size: 0.8rem;
+
+                    }
+                    .text-range.express{
+                        font-size: 0.8rem;
+                        font-weight: 400;
+                    }
+                    .text-express{
+                        background-color: #634bbc;
+                        height: 18px;
+                        border-radius: 16px;
+                        padding: 4px 8px;
+                        display: flex;
+                        align-items: center;
+                       justify-content: center;
+                        min-width: 80px;
+                    
+                        .text{
+                            font-size: 0.8rem;
+                            color: white;
+
+                        }
+                    }
+                    .contain-host{
+                        .text-cost{
+                            font-weight: bold;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+       
+    }
+
+}
+
+

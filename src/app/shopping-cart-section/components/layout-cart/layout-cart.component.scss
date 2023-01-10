@@ -1,0 +1,117 @@
+.toolbar-shopping-cart{
+    display: grid;
+    column-gap: 8px;
+    background-color: white;
+    padding-top: 12px;
+    align-items: center;
+    height: fit-content;
+    color: #2b2b2b;
+    .nav-top-shopping-cart{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        .container-nav-rigth{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .position-progress{
+                font-size: 1rem;
+                font-weight: bold;
+                margin: 0;
+            }
+            .btn-buy{
+                font-weight: bold;
+            }
+        }
+    }
+    .container-progress-delivery{
+        display: grid;
+        // justify-content: center;
+        align-items: center;
+        .container-pregress{
+            display: grid;
+            align-items: center;
+            max-width: 400px;
+            min-width: 325px;
+            grid-template-columns: auto 1fr auto 1fr auto;
+            column-gap: 8px;
+            .icon{
+                color: #E0E3E0;
+
+            }
+            .divider{
+                color: #E0E3E0;
+                border-top-width: 3px ;
+            }
+        }
+    }
+    
+}
+
+.container-options-shopping-cart{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 16px;
+    padding: 8px;
+    .container-gral-pages-shopping-cart{
+        .container-pages-shopping-cart{
+           
+        }
+        .container-menu-continue-desktop{
+            display: none;
+        
+        }
+
+    }
+
+}
+
+
+@media screen and (min-width:700px) {
+
+    .container-options-shopping-cart{
+        display: grid;
+        grid-template-columns: auto minmax(325px, 1024px) auto;
+        
+        .container-gral-pages-shopping-cart{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-column:  2 / 3;
+            column-gap: 8px;
+            .container-menu-continue-desktop{
+                display: block;
+            }
+            .container-menu-continue-mobile{
+                display: none;
+            }
+            
+        }
+        
+
+    }
+
+    
+}
+
+
+@media screen and (min-width:800px) {
+
+     .container-options-shopping-cart{
+       padding-top: 32px;
+        
+        // .container-gral-pages-shopping-cart{
+            
+        //     .container-menu-continue-desktop{
+                
+        //     }
+        //     .container-menu-continue-mobile{
+                
+        //     }
+            
+        // }
+        
+
+    }
+
+    
+}

@@ -22,7 +22,6 @@ export class ListFavProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productsServices.getProductsFav().subscribe(products=>{
       this.productList = this.productsServices.convertProductGralToProductBuy(products.slice(0,6))
-      console.log(products)
     })
   }
 

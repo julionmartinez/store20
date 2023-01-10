@@ -1,0 +1,50 @@
+.container-gral-menu-continue{
+    display: grid;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    min-width: 325px;
+    right: 0;
+    left: 0;
+    padding: 12px 8px 32px 8px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.186);
+    .container-info{
+        display: grid;
+        grid-template-columns: auto 1fr 1fr;
+        gap: 8px;
+        p{
+            margin: 0;
+        }
+        .container-icon{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contianer-info-payment{
+            display: grid;
+            grid-template-columns: auto auto;
+            justify-content: flex-start;
+            gap: 8px;
+            .text-total, .text-delivery{
+                font-weight: bold;
+                color: gray;
+            }
+            .number-total, .number-delivery{
+                font-weight: bold;
+            }
+        }
+        .container-btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .btn-continue{
+                border-radius: 18px;
+                width: 100%;
+                max-width: 125px;
+
+            }
+
+        }
+    }
+}
+

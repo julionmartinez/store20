@@ -37,6 +37,7 @@ export class Model01productComponent implements OnInit {
 
   addProduct(){
     if(this.productBuy?.amount! == 0){
+      console.log('add1')
       this.productBuy = {
         product : this.productBuy?.product!,
         idProduct: this.productBuy?.idProduct!,
@@ -48,6 +49,7 @@ export class Model01productComponent implements OnInit {
         this.idProduct = result?.id
       })
     } else {
+      console.log('add2')
       this.productBuy = {
         product : this.productBuy?.product!,
         idProduct: this.productBuy?.idProduct!,

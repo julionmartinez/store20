@@ -1,0 +1,47 @@
+<form [formGroup]="formGroup" class="container-gral-location">
+    <section class="container-delivery-location" >
+
+        <mat-button-toggle-group formControlName="selectionLocation" class="container-type-delivery" >
+            <mat-button-toggle value="location" [class.active]="selectionLocationField?.value == 'location'" class="btn-toggle-delivery-address btn-toggle" >Envió a domicilio</mat-button-toggle>
+            <mat-button-toggle value="pickup"  [class.active]="selectionLocationField?.value == 'pickup'" class="btn-toggle-delivery-pickup btn-toggle" >Recoger en tienda</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <app-card-location [locationDelivery]="locationDeliveryPrincipal" ></app-card-location>
+        
+        
+    </section>
+
+    <section class="container-select-day" >
+        <mat-button-toggle-group formControlName="fullDateString" class="container-list-btn-days" >
+            <ng-container *ngFor="let day of optionDeliveryDate" >
+                <div class="container-btn" >
+                     <span class="name-text" >{{day.nameDay}}</span>
+                    <mat-button-toggle [class.active]="shoppingCart?.deliveryTime?.fullDateString ==  day.fullDateString"  [value]="day.fullDateString"  mat-fab   class="circle-date" >
+                        <span class="day-text" >{{day.day}}/{{day.month}} </span>
+                    </mat-button-toggle>
+                </div>      
+            </ng-container>
+        </mat-button-toggle-group>
+        <section class="container-select-hours" >
+       
+                <mat-radio-group formControlName="deliveryHours" class="group-radio-select-hours" >
+                    <ng-container *ngFor="let hour of deliveryHoursOptions">
+                        <mat-radio-button   [value]="hour.hourRange"  *ngIf="hour.status == 'enable' "   class="radio-button" color="primary"  >
+                            <div class="container-radio-selection" >
+                                <span class="text-range" [class.express]="hour.typeDeliveryHours == 'express' " >{{hour.hourRange}}</span>
+                                <div *ngIf="hour.typeDeliveryHours == 'express' " class="text-express" >
+                                    <span class="text" >{{hour.typeDeliveryHours | titlecase }}</span>
+                                </div>
+                                <div class="contain-host" >
+                                    <span [class.costfree]="hour.cost == 0" class="text-cost" >{{hour.cost | currency}} </span>
+                                </div>
+                            </div> 
+                        </mat-radio-button>
+                        
+                    </ng-container>
+                </mat-radio-group>
+            
+
+        </section>
+    </section>
+</form>

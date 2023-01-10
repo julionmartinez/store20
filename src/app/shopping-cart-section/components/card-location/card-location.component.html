@@ -1,0 +1,12 @@
+<section *ngIf="locationDelivery == undefined"  class="card-location-undefind" >
+    <section class="section-top" >
+        <div class="contain-first" >
+            <mat-icon color="primary" class="icon-home icon" >home</mat-icon>
+            <p class="text-card" >Agrega una dirección</p>
+        </div>
+        
+        <button mat-icon-button (click)="openDialogLocation()" >
+            <mat-icon class="arrow-forward" >arrow_forward_ios</mat-icon>
+        </button>
+    </section>
+</section>

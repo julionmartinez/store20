@@ -34,23 +34,19 @@
 @media screen and (max-width:600px) {
 
     .content-image-offer{
-        display: none;
-        
-    }
-    .content-image-offer-mobile{
         display: grid;
         grid-template-columns: repeat(4,90%);
         column-gap: 12px;   
         overflow-x: scroll;
         overscroll-behavior-x:contain ;
         scroll-snap-type: x proximity;
-    .image{
-        width: 100%;
-        object-fit: contain;
-        object-position: center center;
+        .image{
+            width: 100%;
+            object-fit: contain;
+            object-position: center center;
+        }
+        
     }
-    }
-
     
 }
 

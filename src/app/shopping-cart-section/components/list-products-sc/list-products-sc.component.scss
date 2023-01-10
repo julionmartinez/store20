@@ -1,0 +1,14 @@
+.container-gral-product-list-SC{
+    // background-color: rgb(242, 242, 242);
+    padding: 0 8px;
+    .title{
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .container-products-list{
+        display: grid;
+        row-gap: 12px;
+        max-width: 400px;
+    }
+
+}

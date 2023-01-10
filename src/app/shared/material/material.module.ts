@@ -11,6 +11,11 @@ import { MatCheckboxModule} from'@angular/material/checkbox';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatCardModule} from '@angular/material/card';
 import { MatBadgeModule} from '@angular/material/badge';
+import { LayoutModule} from '@angular/cdk/layout';
+import { MatRadioModule} from '@angular/material/radio';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule} from '@angular/material/dialog'
+
 
 
 @NgModule({
@@ -27,6 +32,10 @@ import { MatBadgeModule} from '@angular/material/badge';
     MatSnackBarModule,
     MatCardModule,
     MatBadgeModule,
+    LayoutModule,
+    MatRadioModule,
+    MatButtonToggleModule,
+    MatDialogModule,
   ],
   imports: [
     CommonModule,
@@ -41,7 +50,10 @@ import { MatBadgeModule} from '@angular/material/badge';
     MatSnackBarModule,
     MatCardModule,
     MatBadgeModule,
-
+    LayoutModule,
+    MatRadioModule,
+    MatButtonToggleModule,
+    MatDialogModule,
   ]
 })
 export class MaterialModule { }

@@ -1,0 +1,17 @@
+.form-location{
+    display: grid;
+   
+    width: 100%;
+    .title-form{
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .container-btn{
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 400px;
+        column-gap: 12px;
+    }
+
+}

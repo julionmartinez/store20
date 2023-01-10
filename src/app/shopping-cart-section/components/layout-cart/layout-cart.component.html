@@ -1,0 +1,48 @@
+<mat-toolbar class="toolbar-shopping-cart" >
+    <section class="nav-top-shopping-cart" >
+        <mat-icon>arrow_back_ios</mat-icon>
+        <section class="container-nav-rigth" >
+            <p class="position-progress" >Tus artículos</p>
+            <a class="btn-buy" routerLink="/home" mat-button color="primary" >Seguir comprando <mat-icon>store</mat-icon></a>
+        </section>
+    </section>
+    <div class="container-progress-delivery" >
+        <div class="container-pregress">
+            <button (click)="clickIconBtn('listProducts')" mat-icon-button >
+                <mat-icon class="icon icon-cart" >shopping_cart</mat-icon>
+            </button>
+            <mat-divider class="divider" ></mat-divider>
+            <button (click)="clickIconBtn('location')" mat-icon-button >
+                <mat-icon class="icon icon-location" >location_on</mat-icon>
+            </button>
+            <mat-divider class="divider" ></mat-divider>
+            <button (click)="clickIconBtn('payments')" mat-icon-button >
+                <mat-icon class="icon icon-payments" >payments</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-toolbar>
+<main class="container-options-shopping-cart" >
+   <section class="container-gral-pages-shopping-cart" >
+        <section class="container-pages-shopping-cart" >
+            
+            <div *ngIf="positionShoppingCart == 'listProducts' " class="tab-shopping-cart list-products" > 
+                <app-list-products-sc [listProductBuy]="listProductsShoppingCart" ></app-list-products-sc>
+            </div>
+            <div *ngIf="positionShoppingCart == 'location'" class="tab-shopping-cart location-shopping-cart">
+                <app-location-shopping-cart (updateShoppingCart)="updateShoppingCart($event)" [_shoppingCart]="shoppingCart" [_user]="user" ></app-location-shopping-cart>
+            </div>
+            <div *ngIf="positionShoppingCart == 'payments' "  class="tab-shopping-cart payments-shopping-cart">
+                <app-payments-shopping-cart></app-payments-shopping-cart>
+            </div>
+
+        </section>
+    <section class="container-menu-continue-desktop" >
+        <app-menu-continue-shopping-cart-desktop [idShoppingCart]="idShoppingCart" ></app-menu-continue-shopping-cart-desktop>
+    </section>
+    
+    <section  class="container-menu-continue-mobile" >
+        <app-menu-continue-shopping-cart  ></app-menu-continue-shopping-cart>
+    </section>
+   </section>
+</main>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, map } from 'rxjs';
+import { LocationDelivery } from 'src/app/shared/interfaces/location-delivery';
 import { User } from 'src/app/shared/interfaces/user';
 import { UserRegisterBD } from 'src/app/shared/interfaces/user-register-db';
 
@@ -13,6 +14,9 @@ import { UserRegisterBD } from 'src/app/shared/interfaces/user-register-db';
 export class AuthService {
 
   private nameColletionListUser = 'colletionListUser';
+  private nameColletionAdressUser = 'colletionAdressUser';
+
+
   private idUser: string | null = null;
   private user: User | null = null;
   private userB = new BehaviorSubject < User | null>(null);
@@ -21,6 +25,8 @@ export class AuthService {
   private emailUser:string | null = null;
   private emailUserB = new BehaviorSubject<string | null>(null);
   emailUserB$ = this.emailUserB.asObservable();
+
+  
 
 
   constructor(
@@ -80,6 +86,10 @@ export class AuthService {
 
   getUserDB(email:string){
     return this.afs.collection<User>(this.nameColletionListUser, ref=> ref.where('email', '==', email )).valueChanges({idField:'id'})
+  }
+
+  getAdressList(){
+    return this.afs.collection(this.nameColletionListUser).doc(this.user?.id).collection<LocationDelivery>(this.nameColletionAdressUser).valueChanges({idField:'id'})
   }
 
 

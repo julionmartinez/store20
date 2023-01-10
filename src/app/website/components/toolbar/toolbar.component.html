@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="toolbar">
     <section class="top-nav" >
         <section class="container-logo" >
-            <a routerLink="/home" class="btn-logo" mat-icon-button>
+            <a routerLink="/home" class="btn-logo" mat-button>
                 <img class="icon-logo"  src="https://firebasestorage.googleapis.com/v0/b/markettutti.appspot.com/o/image-store20%2Flogo-line.svg?alt=media&token=95c6cae1-ea69-4b50-a7c0-fdfe80b825bb" alt="">
             </a>
         </section>
@@ -10,7 +10,7 @@
                 <mat-icon class="icon" >category</mat-icon>
                 <span class="text-btn" >Categorías</span>
             </a>
-            <a class="btn-category-mobile" href="" mat-icon-button>
+            <a class="btn-category-mobile" routerLink="/category" mat-icon-button>
                 <mat-icon class="icon" >category</mat-icon>
                 <!-- <mat-icon>expand_more</mat-icon> -->
             </a>
@@ -34,10 +34,10 @@
         
 
         <button *ngIf="shoppingCart?.totalProducts != 0 " mat-button class="container-total-payment" >
-            <p class="total-payment" >{{shoppingCart?.total | currency}}</p>
+            <p class="total-payment" >{{shoppingCart?.subtotal| currency}}</p>
         </button>
 
-        <a class="btn-cart" href="" mat-icon-button >
+        <a (click)="goShoppingCart()" class="btn-cart" mat-icon-button >
             <mat-icon [matBadge]="shoppingCart?.totalProducts" matBadgeColor="accent" class="icon-cart" >shopping_cart</mat-icon>
         </a>
        </section>

@@ -1,0 +1,10 @@
+<section class="container-gral-product-list-SC" >
+    <p class="title" >{{listProductBuy.length}} Artículos </p>
+    <section class="container-products-list" >
+        <ng-container *ngFor="let product of listProductBuy" >
+            <app-model-product03-shopping-cart [productBuy]="product" ></app-model-product03-shopping-cart>
+            <mat-divider ></mat-divider>
+
+        </ng-container>
+    </section>
+</section>

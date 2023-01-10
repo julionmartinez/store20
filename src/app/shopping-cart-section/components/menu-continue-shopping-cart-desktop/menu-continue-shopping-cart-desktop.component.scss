@@ -1,0 +1,60 @@
+.container-gral-menu-continue-desktop{
+    padding: 12px 8px;
+    border-radius: 8px;
+    border:1px solid rgb(210, 210, 210);
+    max-width: 400px;
+    display: grid;
+    row-gap: 12px;
+    p{
+        margin: 0;
+    }
+    .container-btn{
+        display: grid;
+        // justify-content: space-between;
+        // padding:  ;
+        .btn-continue{
+            height: 32px;
+            border-radius: 16px;
+            font-weight: bold;
+        }
+    }
+    .container-info-payment{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        row-gap: 8px;
+        .text-total, .text-delivery{
+            font-weight: bold;
+            color: gray;
+        }
+        .number-total, .number-delivery{
+            font-weight: bold;
+            justify-self: flex-end;
+
+        }
+        .number-delivery.free{
+            background: #F3951F;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 14px;
+        }
+
+    }
+    .container-total{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .text-total{
+            font-weight: bold;
+            color: gray;
+            
+        }
+        .text-total-number{
+            font-weight: bold;
+            justify-self: flex-end;
+
+        }
+
+    }
+
+
+}

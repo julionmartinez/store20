@@ -1,0 +1,28 @@
+.card-location-undefind{
+    display: grid;
+    align-items: center;
+    // max-width: 365px;
+    min-width: 280px;
+    min-height: 80px;
+    border: 1px solid rgb(218, 218, 218);
+    padding: 12px;
+    border-radius: 8px;
+    .section-top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .contain-first{
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            .text-card{
+                margin: 0;
+                height: fit-content;
+            }
+        }
+        .arrow-forward{
+            justify-self: flex-end;
+        }
+    }
+
+}
