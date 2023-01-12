@@ -4,11 +4,11 @@
             <mat-icon class="icon-shopping-cart" >shopping_cart</mat-icon>
         </section>
         <section class="contianer-info-payment" >
-            <p class="text-total" >Subtotal</p><span class="number-total" >{{'289' | currency}} </span>
-            <p  class="text-delivery">Envio</p><span class="number-delivery" >{{'30' | currency}} </span>
+            <p class="text-total" >Subtotal</p><span class="number-total" >{{ shoppingCart?.subtotal| currency}} </span>
+            <p  class="text-delivery">Envio</p><span class="number-delivery" >{{ shoppingCart?.costDelivery| currency}} </span>
         </section>
         <section class="container-btn" >
-            <button class="btn-continue" mat-raised-button color="primary" >Continuar</button>
+            <button (click)="clickContinue()" class="btn-continue" mat-raised-button color="primary" >Continuar</button>
         </section>
    </section>
 </section>

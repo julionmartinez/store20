@@ -8,15 +8,15 @@
     </section>
     <div class="container-progress-delivery" >
         <div class="container-pregress">
-            <button (click)="clickIconBtn('listProducts')" mat-icon-button >
+            <button class="btn-progress" [ngClass]="{'active': positionShoppingCart } "  (click)="clickIconBtn('listProducts')" mat-icon-button >
                 <mat-icon class="icon icon-cart" >shopping_cart</mat-icon>
             </button>
-            <mat-divider class="divider" ></mat-divider>
-            <button (click)="clickIconBtn('location')" mat-icon-button >
+            <mat-divider  [ngClass]="{'active': positionShoppingCart == 'location' || positionShoppingCart == 'payments' }" class="divider" ></mat-divider>
+            <button class="btn-progress" [ngClass]="{'active': positionShoppingCart == 'location' || positionShoppingCart == 'payments' }" (click)="clickIconBtn('location')" mat-icon-button >
                 <mat-icon class="icon icon-location" >location_on</mat-icon>
             </button>
-            <mat-divider class="divider" ></mat-divider>
-            <button (click)="clickIconBtn('payments')" mat-icon-button >
+            <mat-divider [ngClass]="{'active': positionShoppingCart == 'payments'}" class="divider active" ></mat-divider>
+            <button class="btn-progress" [ngClass]="{'active': positionShoppingCart == 'payments'}" (click)="clickIconBtn('payments')" mat-icon-button >
                 <mat-icon class="icon icon-payments" >payments</mat-icon>
             </button>
         </div>
@@ -38,11 +38,11 @@
 
         </section>
     <section class="container-menu-continue-desktop" >
-        <app-menu-continue-shopping-cart-desktop [idShoppingCart]="idShoppingCart" ></app-menu-continue-shopping-cart-desktop>
+        <app-menu-continue-shopping-cart-desktop (continuebtn)="continueTabPosition()"  [idShoppingCart]="idShoppingCart" ></app-menu-continue-shopping-cart-desktop>
     </section>
     
     <section  class="container-menu-continue-mobile" >
-        <app-menu-continue-shopping-cart  ></app-menu-continue-shopping-cart>
+        <app-menu-continue-shopping-cart [idShoppingCart]="idShoppingCart"  (continuebtn)="continueTabPosition()"    ></app-menu-continue-shopping-cart>
     </section>
    </section>
 </main>

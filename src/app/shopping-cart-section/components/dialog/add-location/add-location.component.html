@@ -1,4 +1,4 @@
-<form [formGroup]="formGroupLocation" class="form-location" >
+<form [formGroup]="formGroupLocation" class="form-location">
     <p class="title-form" >Tu dirección</p>
     <mat-form-field appearance="outline" >
         <mat-label>Nombre de tu dirección</mat-label>
@@ -6,41 +6,25 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" >
-        <mat-label>Calle</mat-label>
-        <input type="text" matInput formControlName="calle" >
+        <mat-label>Tu dirección completa</mat-label>
+        <input type="text" matInput formControlName="addressLarge" >
+        <mat-hint >Calle, número, colonia, municipio, estado</mat-hint>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" >
-        <mat-label>Número</mat-label>
-        <input type="text" matInput formControlName="numero" >
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" >
-        <mat-label>Colonia</mat-label>
-        <input type="text" matInput formControlName="colonia" >
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" >
-        <mat-label>Delegación o munucipio</mat-label>
-        <input type="text" matInput formControlName="municipioDelegacion" >
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" >
-        <mat-label>Estado</mat-label>
-        <input type="text" matInput formControlName="estado" >
-    </mat-form-field>
+    
     <mat-form-field appearance="outline" >
         <mat-label>Código Postal</mat-label>
         <input type="text" matInput formControlName="codigoPostal" >
     </mat-form-field>
-    <mat-checkbox formControlName="type" value="principal" >¿Es tu dirección principal?</mat-checkbox>
+   
+    <mat-checkbox formControlName="principal" >¿Es tu dirección principal?</mat-checkbox>
 
     <div class="container-btn" >
-        <button class="btn btn-cancel" mat-raised-button mat-dialog-close color="warn" >
+        <button type="button"  class="btn btn-cancel" mat-raised-button (click)="cancelClick()" color="warn" >
             Cancelar
         </button>
 
-        <button class="btn btn-save" [mat-dialog-close]="formGroupLocation.value" mat-raised-button color="primary" >
+        <button type="button" (click)="saveLocation()" class="btn btn-save"  mat-raised-button color="primary" >
             Guardar
         </button>
 

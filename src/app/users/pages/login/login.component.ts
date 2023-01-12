@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
   buildFormLogin(){
     this.formLogin = this.formBuilder.nonNullable.group({
       email:['', [Validators.required, Validators.email]],
-      password:['',[Validators.required, Validators.minLength(8)]]
+      password:['',[Validators.required]]
     })
     return this.formLogin
   }
@@ -96,6 +96,7 @@ export class LoginComponent implements OnInit {
         this.openSnackBar('Tu correo o contraseña no son validos, revisalos por favor', 4)
       })
     } else{
+      console.log(this.formLogin)
       this.openSnackBar('Ups! Te falta llenar algun campo, revisalos por favor', 3)
     }
   }

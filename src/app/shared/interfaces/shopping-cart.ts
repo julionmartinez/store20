@@ -1,5 +1,6 @@
 import { DeliveryHours } from "./delivery-hours";
 import { DeliveryTime } from "./delivery-time";
+import { LocationDelivery } from "./location-delivery";
 
 export interface ShoppingCart {
 
@@ -20,7 +21,7 @@ export interface ShoppingCart {
     paymentType: 'transferencia' | 'efectivo' | 'paypal' | 'card',
     statusCart: 'create' | 'confirm' | 'paid' | 'ready' | 'send' | 'delivery' |'cancel' ,
     // status?: 'create' | 'confirmado' | 'entregado' | 'cancelado'
-    deliveryAddress?: Location,
+    deliveryAddress?: LocationDelivery | undefined,
     deliveryTime?:DeliveryTime,
     deliveryHours?:DeliveryHours,
 }

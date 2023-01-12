@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ShoppingCartService } from 'src/app/core/services/shopping-cart.service';
 import { ShoppingCart } from 'src/app/shared/interfaces/shopping-cart';
+
 
 @Component({
   selector: 'app-menu-continue-shopping-cart-desktop',
@@ -18,11 +19,17 @@ export class MenuContinueShoppingCartDesktopComponent implements OnInit {
       })
     }
   }
+
+  @Output() continuebtn = new EventEmitter()
   constructor(
     private shoppingCartServices : ShoppingCartService,
   ) { }
 
   ngOnInit(): void {
+  }
+
+  clickContinue(){
+    return this.continuebtn.emit()
   }
   
 

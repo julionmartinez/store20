@@ -29,8 +29,10 @@
             border-radius:  0px 16px 16px 0px;
 
         }
-
-
+    }
+    .content-btn{
+        display: flex;
+        justify-content: flex-end;
     }
 
 }
@@ -130,6 +132,23 @@
                     .contain-host{
                         .text-cost{
                             font-weight: bold;
+                        }
+                    }
+                    .contain-free-delivery{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 4px 12px;
+                        background-color: #F3951F;
+                        height: 18px;
+                        border-radius: 16px;
+                        box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.353);
+                        color: white;
+                        font-size: 0.8rem;
+                        
+                        width: 80px;
+                        .free-delivery{
+                            font-weight: normal;
                         }
 
                     }

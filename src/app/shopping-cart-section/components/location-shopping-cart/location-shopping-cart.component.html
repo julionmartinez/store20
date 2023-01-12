@@ -6,8 +6,23 @@
             <mat-button-toggle value="pickup"  [class.active]="selectionLocationField?.value == 'pickup'" class="btn-toggle-delivery-pickup btn-toggle" >Recoger en tienda</mat-button-toggle>
         </mat-button-toggle-group>
 
-        <app-card-location [locationDelivery]="locationDeliveryPrincipal" ></app-card-location>
-        
+        <app-card-location (saveLocationEvent)="saveLocation($event)" *ngIf="user != null && shoppingCart?.deliveryType != 'pickup'"  [locationDelivery]="locationDeliveryPrincipal" ></app-card-location>
+        <app-card-location-guest *ngIf="user == null && shoppingCart?.deliveryType != 'pickup'" [locationDelivery]="locationDeliveryPrincipal" (saveLocation)="saveLocation($event)"  ></app-card-location-guest>
+
+        <app-card-location-shop *ngIf="shoppingCart?.deliveryType == 'pickup' " ></app-card-location-shop>
+
+        <section *ngIf="user != null && selectionLocationField?.value == 'location'" class="content-btn" >
+            <button (click)="openBottomSheet()" color="primary" mat-button extended="true" >
+                Mis direcciones
+                <mat-icon>add_circle</mat-icon>
+            </button>
+        </section>
+        <section *ngIf="selectionLocationField?.value == 'pickup'" class="content-btn" >
+            <button (click)="goPrueba()" color="primary" mat-button extended="true" >
+                ¿Tienes dudas? envianos un mensaje
+                <mat-icon>chat</mat-icon>
+            </button>
+        </section>
         
     </section>
 
@@ -16,7 +31,7 @@
             <ng-container *ngFor="let day of optionDeliveryDate" >
                 <div class="container-btn" >
                      <span class="name-text" >{{day.nameDay}}</span>
-                    <mat-button-toggle [class.active]="shoppingCart?.deliveryTime?.fullDateString ==  day.fullDateString"  [value]="day.fullDateString"  mat-fab   class="circle-date" >
+                    <mat-button-toggle [class.active]=" day.fullDateString == fullDateStringField?.value"  [value]="day.fullDateString"  mat-fab   class="circle-date" >
                         <span class="day-text" >{{day.day}}/{{day.month}} </span>
                     </mat-button-toggle>
                 </div>      
@@ -32,8 +47,8 @@
                                 <div *ngIf="hour.typeDeliveryHours == 'express' " class="text-express" >
                                     <span class="text" >{{hour.typeDeliveryHours | titlecase }}</span>
                                 </div>
-                                <div class="contain-host" >
-                                    <span [class.costfree]="hour.cost == 0" class="text-cost" >{{hour.cost | currency}} </span>
+                                <div [ngClass]="{ 'contain-free-delivery': hour.cost == 0}" class="contain-host" >
+                                    <span [class.costfree]="hour.cost == 0" class="text-cost" [ngClass]="{ 'free-delivery': hour.cost == 0}"  >{{hour.cost == 0 ? 'Gratis' : hour.cost | currency}} </span>
                                 </div>
                             </div> 
                         </mat-radio-button>

@@ -19,7 +19,7 @@ export class LayoutCartComponent implements OnInit {
   listProductsShoppingCart:ProductsBuy[] = [];
 
   user: User | null = null;
-  positionShoppingCart: 'listProducts' | 'location' | 'payments' = 'location';
+  positionShoppingCart: 'listProducts' | 'location' | 'payments' = 'listProducts';
 
   constructor(
     private shoppinCartServices: ShoppingCartService,
@@ -27,7 +27,6 @@ export class LayoutCartComponent implements OnInit {
     private userService : AuthService,
   ) {
     this.activatedRouter.paramMap.subscribe(params=>{
-
       if (params != null){
         this.idShoppingCart = params.get('id')
       }else{
@@ -63,6 +62,21 @@ export class LayoutCartComponent implements OnInit {
     if(this.idShoppingCart != null){
       this.shoppinCartServices.updateShoppingCart(this.idShoppingCart,cart)
     }
+  }
+
+  continueTabPosition(){
+    switch (this.positionShoppingCart){
+      case 'listProducts':
+        this.positionShoppingCart = 'location';
+        break;
+      case 'location':
+        this.positionShoppingCart = 'payments';
+        break;
+      case 'payments':
+        console.log(this.shoppingCart, 'ir a pagina de pagos')
+
+    }
+
   }
 
 }

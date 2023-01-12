@@ -1,0 +1,27 @@
+<section class="container-list" >
+    <div class="content-sectiontop" >
+        <button (click)="openDialogLocationEdit(undefined)" mat-button color="primary" >Nueva dirección <mat-icon>add_home</mat-icon> </button>
+    </div>
+    <ng-container *ngFor="let location of listLocationDelivery" >
+        <mat-card class="card-location"  >
+            <mat-card-header class="top-location" >
+             
+                    <mat-icon mat-card-avatar class="icon" color="primary"  >place</mat-icon>
+                
+                <mat-card-title-group>
+                    <mat-card-title class="title-text" >{{location.locationName | titlecase}}</mat-card-title>
+                <mat-card-subtitle *ngIf="location.principal == true" class="subtitle-text" >{{location.principal == true ? 'Domicilio Principal' : ''}}</mat-card-subtitle>
+                </mat-card-title-group>
+                
+            </mat-card-header>
+            <mat-card-content>
+                <span>{{location.addressLarge}}</span>
+            </mat-card-content>
+            <mat-card-actions class="section-action" >
+                <button mat-icon-button color="warn" (click)="deleteLocation(location.id!)" ><mat-icon>delete</mat-icon> </button>
+                <button (click)="openDialogLocationEdit(location)" mat-icon-button color="primary" ><mat-icon>edit</mat-icon></button>
+                <button (click)="selecLocation(location)" class="btn-select" mat-button color="accent"  >Elegir<mat-icon class="icon" >radio_button_checked</mat-icon></button>
+            </mat-card-actions>
+        </mat-card>
+    </ng-container>
+</section>

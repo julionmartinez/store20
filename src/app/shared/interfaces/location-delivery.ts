@@ -8,5 +8,6 @@ export interface LocationDelivery {
     municipioDelegacion:string,
     estado:string,
     codigoPostal:string,
-    type: 'principal' | 'other',
+    principal: boolean ,
+    addressLarge:string,
 }

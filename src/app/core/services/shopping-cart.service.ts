@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { CreateShoppingCartRegister } from 'src/app/shared/interfaces/create-shopping-cart-register';
+import { LocationDelivery } from 'src/app/shared/interfaces/location-delivery';
 import { MakeShoppingCart } from 'src/app/shared/interfaces/make-shopping-cart';
 import { ProductsBuy } from 'src/app/shared/interfaces/products-buy';
 import { ShoppingCart } from 'src/app/shared/interfaces/shopping-cart';
@@ -172,10 +173,6 @@ this.afs.collection(this.nameColletionShoppingCart).doc(idSC).collection(this.na
     shoppingCart.total = subTotal + shoppingCart.costDelivery;
     return shoppingCart
   }
-
-  
-
-  
 
   // fixedShoppingCart(idShoppingCart:string){
   //   this.getShoppingCart(idShoppingCart).subscribe(dataSC=>{

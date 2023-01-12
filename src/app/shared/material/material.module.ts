@@ -15,7 +15,7 @@ import { LayoutModule} from '@angular/cdk/layout';
 import { MatRadioModule} from '@angular/material/radio';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule} from '@angular/material/dialog'
-
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet'
 
 
 @NgModule({
@@ -36,6 +36,7 @@ import { MatDialogModule} from '@angular/material/dialog'
     MatRadioModule,
     MatButtonToggleModule,
     MatDialogModule,
+    MatBottomSheetModule,
   ],
   imports: [
     CommonModule,
@@ -54,6 +55,7 @@ import { MatDialogModule} from '@angular/material/dialog'
     MatRadioModule,
     MatButtonToggleModule,
     MatDialogModule,
+    MatBottomSheetModule
   ]
 })
 export class MaterialModule { }

@@ -46,6 +46,7 @@ export class AuthService {
         this.getUserDB(dataEmail).subscribe(dataUser=>{
          dataUser.map(uuser=>{
         this.user = uuser
+        console.log(this.user)
         this.userB.next(this.user)
          })
         })
@@ -90,6 +91,30 @@ export class AuthService {
 
   getAdressList(){
     return this.afs.collection(this.nameColletionListUser).doc(this.user?.id).collection<LocationDelivery>(this.nameColletionAdressUser).valueChanges({idField:'id'})
+  }
+
+  addLocation(locationDelivery:LocationDelivery){
+    if(this.user != null){
+      return this.afs.collection(this.nameColletionListUser).doc(this.user.id).collection<LocationDelivery>(this.nameColletionAdressUser).add(locationDelivery)
+    }else{
+       return null
+    }
+  }
+  updateLocation(idLocation:string, loc:LocationDelivery){
+    if(this.user != null){
+      return this.afs.collection(this.nameColletionListUser).doc(this.user.id).collection<LocationDelivery>(this.nameColletionAdressUser).doc(idLocation).update(loc)
+    }else{
+      return null
+    }
+  }
+
+  deleteLocation(idLocation:string){
+    if(this.user != null){
+      return this.afs.collection(this.nameColletionListUser).doc(this.user?.id).collection(this.nameColletionAdressUser).doc(idLocation).delete()
+    }else {
+      return null
+    }
+
   }
 
 

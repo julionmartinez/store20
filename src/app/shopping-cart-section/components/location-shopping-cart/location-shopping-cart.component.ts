@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { ShoppingCartService } from 'src/app/core/services/shopping-cart.service';
 import { DeliveryHours } from 'src/app/shared/interfaces/delivery-hours';
 import { DeliveryTime } from 'src/app/shared/interfaces/delivery-time';
 import { LocationDelivery } from 'src/app/shared/interfaces/location-delivery';
 import { ShoppingCart } from 'src/app/shared/interfaces/shopping-cart';
 import { User } from 'src/app/shared/interfaces/user';
+import { ListLocationsComponent } from '../sheet/list-locations/list-locations.component';
 
 @Component({
   selector: 'app-location-shopping-cart',
@@ -17,21 +18,37 @@ export class LocationShoppingCartComponent implements OnInit {
   shoppingCart : ShoppingCart | null | undefined = null;
   user: User | null = null;
   locationDeliveryList: LocationDelivery[] = [];
-  locationDeliveryPrincipal: LocationDelivery | undefined = undefined
+  locationDeliveryPrincipal: LocationDelivery | undefined = undefined;
   @Input() set _user(userData: User | null){
-    this.user = userData
-    if(this.user != null){
+    this.user = userData;
+
+    if(this.user != null && this.shoppingCart?.deliveryAddress == undefined ){
       this.userServices.getAdressList().subscribe(data=>{
-       this.locationDeliveryList = data
-       this.locationDeliveryPrincipal = this.locationDeliveryList.find(loc=> loc.type == 'principal') 
-      })
+       this.locationDeliveryList = data;
+       this.locationDeliveryPrincipal = this.locationDeliveryList.find(loc=> loc.principal == true); 
+      });
     }
   }
+
+
   @Input() set _shoppingCart(sc:ShoppingCart | null | undefined){
+
     if(sc != null || undefined){
       this.shoppingCart = sc;
+      if(this.shoppingCart?.deliveryAddress != undefined){
+        this.locationDeliveryPrincipal = this.shoppingCart.deliveryAddress;
+      }
+      if(this.shoppingCart?.deliveryType != undefined){
+        this.deliveryHoursOptions = this.makeDeliveryHours(this.shoppingCart.deliveryType);
+      }else{
+        this.deliveryHoursOptions = this.makeDeliveryHours('location');
+      }
+      if(this.shoppingCart?.deliveryType == 'pickup'){
+        this.deliveryHoursOptions[0].cost = 0
+      }
     }
-    this.buildForm();
+    this.buildForm()
+
     this.fullDateStringField?.valueChanges.subscribe(data=>{
 
       if(this.shoppingCart != null){
@@ -41,23 +58,16 @@ export class LocationShoppingCartComponent implements OnInit {
       }
     })
 
-    this.deliveryHoursField?.valueChanges.subscribe(data=>{
-      
-      if(this.shoppingCart != null){
-        let horsField = this.deliveryHoursOptions.find(option=> data == option.hourRange)
-        this.shoppingCart.deliveryHours = horsField
-        this.outUpdateShoppingCart(this.shoppingCart)
-      }
+    this.deliveryHoursField?.valueChanges.subscribe(dataHour=>{
+      this.switchDeliveryHours(dataHour)
       
     })
 
-    this.selectionLocationField?.valueChanges.subscribe(data=>{
-      if(this.shoppingCart != null){
-        this.shoppingCart.deliveryType = data;
-        this.outUpdateShoppingCart(this.shoppingCart)
-       
-      }
+    this.selectionLocationField?.valueChanges.subscribe(dataLocation=>{
+      this.switchDeliveryLocation(dataLocation)
     })
+
+    
   }
   @Output() updateShoppingCart = new EventEmitter<ShoppingCart>();
 
@@ -79,7 +89,7 @@ export class LocationShoppingCartComponent implements OnInit {
       hourRange: '1 hora o menos' ,
       hourStart: '' ,
       hourFinish: '',
-      typeDeliveryHours:  'express',
+      typeDeliveryHours: 'express',
       cost:50,
       routeType: null,
       status: 'enable'
@@ -117,18 +127,33 @@ export class LocationShoppingCartComponent implements OnInit {
     },
   ] ;
 
+  locationStore : LocationDelivery = {
+      locationName: 'DetinMarin',
+      emailUser: '',
+      calle:'',
+      numero: '',
+      colonia: '',
+      municipioDelegacion: '',
+      estado: '',
+      codigoPostal: '59877',
+      principal: false,
+      addressLarge: 'Virrey de mendoza 804 Las Fuentes, Zamora Michoacán',
+  }
+
   formGroup : FormGroup;
 
   constructor(
     private formBuilder : FormBuilder,
     private userServices : AuthService,
-  ) { 
+    private _bottomSheet : MatBottomSheet,
+  ) {
+    this.optionDeliveryDate = this.makeDateList();
     this.formGroup = this.buildForm()
+
   }
 
   ngOnInit(): void {
-    this.optionDeliveryDate = this.makeDateList();
-    this.deliveryHoursOptions = this.makeDeliveryHours();
+    
 
 
     this.fullDateStringField?.valueChanges.subscribe(data=>{
@@ -140,44 +165,48 @@ export class LocationShoppingCartComponent implements OnInit {
       }
     })
 
-    this.deliveryHoursField?.valueChanges.subscribe(data=>{
-      
-      if(this.shoppingCart != null){
-        let horsField = this.deliveryHoursOptions.find(option=> data == option.hourRange)
-        this.shoppingCart.deliveryHours = horsField
-        this.outUpdateShoppingCart(this.shoppingCart)
-      }
+    this.deliveryHoursField?.valueChanges.subscribe(dataHour=>{
+      this.switchDeliveryHours(dataHour)
+
       
     })
 
-    this.selectionLocationField?.valueChanges.subscribe(data=>{
-      if(this.shoppingCart != null){
-        this.shoppingCart.deliveryType = data;
-        this.outUpdateShoppingCart(this.shoppingCart)
-       
-      }
+    this.selectionLocationField?.valueChanges.subscribe(dataLocation=>{
+      this.switchDeliveryLocation(dataLocation)  
     })
   }
 
   buildForm(){
     this.formGroup = this.formBuilder.nonNullable.group({
       selectionLocation:[this.shoppingCart?.deliveryType == undefined ? 'location' : this.shoppingCart.deliveryType, Validators.required],
-      fullDateString:[this.shoppingCart?.deliveryTime?.fullDateString == undefined ? this.optionDeliveryDate[0] : this.shoppingCart.deliveryTime, Validators.required],
-      deliveryHours:[this.shoppingCart?.deliveryHours?.hourRange == undefined ? this.deliveryHoursOptions[0] :this.shoppingCart.deliveryHours.hourRange ,Validators.required],
+      fullDateString:[this.shoppingCart?.deliveryTime == undefined ? this.optionDeliveryDate[0].fullDateString : this.shoppingCart.deliveryTime.fullDateString, Validators.required],
+      deliveryHours:[this.shoppingCart?.deliveryHours?.hourRange == undefined ? this.deliveryHoursOptions[0].hourRange :this.shoppingCart.deliveryHours.hourRange ,Validators.required],
+      
     })
     return this.formGroup
   }
 
-  outUpdateShoppingCart(cart:ShoppingCart){
-    this.updateShoppingCart.emit(cart)
-
+  openBottomSheet(){
+    this.goPrueba()
+    const sheetRef = this._bottomSheet.open(ListLocationsComponent)
+    sheetRef.afterDismissed().subscribe(resultLoc=>{
+      this.saveLocation(resultLoc)
+    })
   }
 
+  outUpdateShoppingCart(cart:ShoppingCart){
+    this.updateShoppingCart.emit(cart)
+  }
 
+  saveLocation(loc: LocationDelivery){
+   if (this.shoppingCart != null){
+    this.shoppingCart.deliveryAddress = loc
+    this.outUpdateShoppingCart(this.shoppingCart)
+  }
+  }
 
-  makeDeliveryHours(){
+  makeDeliveryHours(dataLoc: 'location' | 'pickup'){
     let todayLet = new Date(2022, 0, 8 , 12,16);
-    
 
     let activeHoursDay = todayLet.getHours() + 1 > this.finishHours ? false : true;
 
@@ -198,7 +227,7 @@ export class LocationShoppingCartComponent implements OnInit {
             hourStart: '' ,
             hourFinish: '',
             typeDeliveryHours:  'cost',
-            cost:30,
+            cost: dataLoc == 'location' ? 30: 0,
             routeType: null,
             status:  hourNow > hours ? 'disabled' : 'enable'
         }
@@ -215,17 +244,52 @@ export class LocationShoppingCartComponent implements OnInit {
             hourStart: hourStart ,
             hourFinish: hourFinish,
             typeDeliveryHours:  'cost',
-            cost:30,
+            cost: dataLoc == 'location' ? 30: 0,
             routeType: null,
             status:  'enable'
         }
       )
-
-      
     })
       
     }
     return this.deliveryHoursOptions
+  }
+  switchDeliveryHours(dataHours:string){
+    if(this.shoppingCart != null){
+      let horsField = this.deliveryHoursOptions.find(option=> dataHours == option.hourRange)
+      if(horsField != undefined){
+        this.shoppingCart.deliveryHours = horsField
+        this.shoppingCart.costDelivery = horsField.cost
+        this.shoppingCart.total += horsField.cost
+      }
+      this.outUpdateShoppingCart(this.shoppingCart)
+    }
+  }
+
+  switchDeliveryLocation(dataLoc: 'location' | 'pickup'){
+    if (this.shoppingCart != null){
+      this.shoppingCart.deliveryType = dataLoc;
+      if (dataLoc == 'pickup'){
+        this.deliveryHoursOptions.forEach(hhour=>{
+          hhour.cost = 0
+        })
+        this.shoppingCart.costDelivery = 0
+        this.shoppingCart.total = this.shoppingCart.subtotal
+      } else{
+        this.deliveryHoursOptions.forEach(hhhour=>{
+          if(hhhour.hourRange == '1 hora o menos'){
+            hhhour.cost = 50
+          }else {
+            hhhour.cost = 30
+          }
+        })
+        let costDeliverySwi = this.deliveryHoursOptions.find(deli=>deli.hourRange == this.deliveryHoursField?.value)?.cost!
+        this.shoppingCart.costDelivery = costDeliverySwi
+        this.shoppingCart.total = this.shoppingCart.subtotal + costDeliverySwi 
+      }
+      this.outUpdateShoppingCart(this.shoppingCart)
+    }
+    
   }
 
   makeDateList(){
@@ -301,5 +365,9 @@ export class LocationShoppingCartComponent implements OnInit {
 
     get deliveryHoursField(){
       return  this.formGroup.get('deliveryHours')
+    }
+
+    goPrueba(){
+      console.log(this.formGroup.value)
     }
 }

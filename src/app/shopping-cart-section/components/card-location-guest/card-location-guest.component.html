@@ -2,7 +2,7 @@
     <section *ngIf="locationDelivery == undefined" class="section-top undefined" >
         <div class="contain-first" >
             <mat-icon color="primary" class="icon-home icon" >home</mat-icon>
-            <p class="text-card" >Agrega una dirección</p>
+            <p class="text-card" >Agrega una dirección guest</p>
         </div>
         
         <button mat-icon-button (click)="openDialogLocation()" >
@@ -11,15 +11,12 @@
     </section>
     <section class="section-top register" *ngIf="locationDelivery != undefined " >
         <div class="contain-first" >
-            <div class="content-title" >
-                <mat-icon color="primary" class="icon-home icon" >home</mat-icon>
-                <p class="text-card" >{{locationDelivery.locationName | titlecase}}</p>
-                <span class="text-principal" >{{locationDelivery.principal == true ? 'Principal' : ''}} </span>
-            </div>
-            
+            <mat-icon color="primary" class="icon-home icon" >home</mat-icon>
+            <p class="text-card" >{{locationDelivery.locationName}}</p>
         </div>
         <div class="contain-info-address" >
-            <p class="text-location" >{{locationDelivery.addressLarge}}CP. {{locationDelivery.codigoPostal}}</p>
+            <p class="text-location" >{{locationDelivery.addressLarge}}</p>
+            <p>CP. {{locationDelivery.codigoPostal}}</p>
         </div>
 
         <div class="arrow-forward" >

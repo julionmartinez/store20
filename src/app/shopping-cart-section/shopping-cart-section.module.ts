@@ -17,6 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CardLocationComponent } from './components/card-location/card-location.component';
 import { AddLocationComponent } from './components/dialog/add-location/add-location.component';
+import { CardLocationGuestComponent } from './components/card-location-guest/card-location-guest.component';
+import { CardLocationShopComponent } from './components/card-location-shop/card-location-shop.component';
+import { ListLocationsComponent } from './components/sheet/list-locations/list-locations.component';
 
 
 @NgModule({
@@ -31,6 +34,9 @@ import { AddLocationComponent } from './components/dialog/add-location/add-locat
     MenuContinueShoppingCartDesktopComponent,
     CardLocationComponent,
     AddLocationComponent,
+    CardLocationGuestComponent,
+    CardLocationShopComponent,
+    ListLocationsComponent,
     
   ],
   imports: [
