@@ -38,11 +38,11 @@
 
         </section>
     <section class="container-menu-continue-desktop" >
-        <app-menu-continue-shopping-cart-desktop (continuebtn)="continueTabPosition()"  [idShoppingCart]="idShoppingCart" ></app-menu-continue-shopping-cart-desktop>
+        <app-menu-continue-shopping-cart-desktop (continuebtn)="continueTabPosition()"  [_shoppingCart]="shoppingCart" ></app-menu-continue-shopping-cart-desktop>
     </section>
     
     <section  class="container-menu-continue-mobile" >
-        <app-menu-continue-shopping-cart [idShoppingCart]="idShoppingCart"  (continuebtn)="continueTabPosition()"    ></app-menu-continue-shopping-cart>
+        <app-menu-continue-shopping-cart [_shoppingCart]="shoppingCart"  (continuebtn)="continueTabPosition()"    ></app-menu-continue-shopping-cart>
     </section>
    </section>
 </main>

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ShoppingCartService } from 'src/app/core/services/shopping-cart.service';
 import { ShoppingCart } from 'src/app/shared/interfaces/shopping-cart';
 
 
@@ -10,19 +9,17 @@ import { ShoppingCart } from 'src/app/shared/interfaces/shopping-cart';
 })
 export class MenuContinueShoppingCartComponent implements OnInit {
 
-  shoppingCart : ShoppingCart | null = null;
-  @Input() set idShoppingCart(id:string | null){
-    if(id!= null){
-      this.shoppingCartServices.getShoppingCart(id).subscribe(data=>{
-        this.shoppingCart = data!
-      })
+  shoppingCart : ShoppingCart | undefined = undefined;
+  @Input() set _shoppingCart(sc:ShoppingCart|undefined){
+    if(sc != undefined){
+      this.shoppingCart = sc
     }
   }
 
   @Output() continuebtn = new EventEmitter()
 
   constructor(
-    private shoppingCartServices : ShoppingCartService,
+
   ) { }
 
   ngOnInit(): void {

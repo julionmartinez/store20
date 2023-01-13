@@ -1,1 +1,41 @@
-<p>payments-shopping-cart works!</p>
+<section class="gral-payments" >
+    <form [formGroup]="formPayments" class="form" action="" >
+
+        <p class="title-form" >¿Cúal es tu metodo de pago?</p>
+        <mat-radio-group formControlName="paymentType" class="contentlist" >
+               
+                <mat-radio-button  class="option-payment" value="credit-card"  >
+                    <div class="content-option" >
+                     <div class="side-left" >
+                         <mat-icon>credit_card</mat-icon>
+                         <span>Tarjeta de débito o crédito</span>
+                     </div>
+                    
+                    </div>
+                 </mat-radio-button>
+
+                 <mat-radio-button  class="option-payment" value="paypal"  >
+                    <div class="content-option" >
+                     <div class="side-left" >
+                         <picture class="content-logo" >
+                             <img src="https://firebasestorage.googleapis.com/v0/b/markettutti.appspot.com/o/image-store20%2Fletter_paypal_blue.svg?alt=media&token=d4e69c70-504d-4aa0-bf9d-6c5cc689eb20" alt="">
+                         </picture>
+                         <span>Paypal</span>
+                     </div>
+                   
+                    </div>
+                 </mat-radio-button>
+     
+    
+                 <mat-radio-button  class="option-payment" value="paymen-delivery"  >
+                    <div class="content-option" >
+                     <div class="side-left" >
+                         <mat-icon>monetization_on</mat-icon>
+                         <span>Pagar en entrega</span>
+                     </div>
+                  
+                    </div>
+                 </mat-radio-button>
+        </mat-radio-group>
+    </form>
+</section>

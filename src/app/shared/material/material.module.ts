@@ -14,9 +14,11 @@ import { MatBadgeModule} from '@angular/material/badge';
 import { LayoutModule} from '@angular/cdk/layout';
 import { MatRadioModule} from '@angular/material/radio';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatDialogModule} from '@angular/material/dialog'
-import {MatBottomSheetModule} from '@angular/material/bottom-sheet'
-
+import { MatDialogModule} from '@angular/material/dialog';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
+import { MatExpansionModule} from '@angular/material/expansion'
 
 @NgModule({
   declarations: [],
@@ -37,6 +39,9 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet'
     MatButtonToggleModule,
     MatDialogModule,
     MatBottomSheetModule,
+    MatListModule,
+    MatSelectModule,
+    MatExpansionModule,
   ],
   imports: [
     CommonModule,
@@ -55,7 +60,10 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet'
     MatRadioModule,
     MatButtonToggleModule,
     MatDialogModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatListModule,
+    MatSelectModule,
+    MatExpansionModule
   ]
 })
 export class MaterialModule { }

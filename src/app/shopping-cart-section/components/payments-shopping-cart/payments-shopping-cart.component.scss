@@ -1,0 +1,39 @@
+
+.gral-payments{
+    .form{
+        .title-form{
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+    }
+
+}
+
+.contentlist{
+    display: grid;
+    row-gap: 16px;
+    width: 100%;
+        .content-option{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            .side-left{
+                display: flex;
+                column-gap: 8px;
+                align-items: center;
+                .content-logo{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img{
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+            }
+    
+        }
+}
+

@@ -14,12 +14,12 @@ import { User } from 'src/app/shared/interfaces/user';
 })
 export class LayoutCartComponent implements OnInit {
   idShoppingCart : string | null = null;
-  shoppingCart : ShoppingCart | null = null;
+  shoppingCart : ShoppingCart | undefined = undefined;
 
   listProductsShoppingCart:ProductsBuy[] = [];
 
   user: User | null = null;
-  positionShoppingCart: 'listProducts' | 'location' | 'payments' = 'listProducts';
+  positionShoppingCart: 'listProducts' | 'location' | 'payments' = 'payments';
 
   constructor(
     private shoppinCartServices: ShoppingCartService,

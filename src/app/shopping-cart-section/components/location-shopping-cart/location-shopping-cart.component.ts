@@ -15,7 +15,7 @@ import { ListLocationsComponent } from '../sheet/list-locations/list-locations.c
   styleUrls: ['./location-shopping-cart.component.scss']
 })
 export class LocationShoppingCartComponent implements OnInit {
-  shoppingCart : ShoppingCart | null | undefined = null;
+  shoppingCart : ShoppingCart | undefined = undefined;
   user: User | null = null;
   locationDeliveryList: LocationDelivery[] = [];
   locationDeliveryPrincipal: LocationDelivery | undefined = undefined;
@@ -31,27 +31,26 @@ export class LocationShoppingCartComponent implements OnInit {
   }
 
 
-  @Input() set _shoppingCart(sc:ShoppingCart | null | undefined){
+  @Input() set _shoppingCart(sc:ShoppingCart | undefined){
 
-    if(sc != null || undefined){
+    if(sc != undefined){
       this.shoppingCart = sc;
       if(this.shoppingCart?.deliveryAddress != undefined){
         this.locationDeliveryPrincipal = this.shoppingCart.deliveryAddress;
       }
       if(this.shoppingCart?.deliveryType != undefined){
-        this.deliveryHoursOptions = this.makeDeliveryHours(this.shoppingCart.deliveryType);
-      }else{
-        this.deliveryHoursOptions = this.makeDeliveryHours('location');
+        let dateTime = this.shoppingCart.deliveryTime?.fullDateString == undefined ? null : this.shoppingCart.deliveryTime.fullDateString
+        this.makeDeliveryHours(this.shoppingCart.deliveryType, this.shoppingCart.subtotal, dateTime)
       }
-      if(this.shoppingCart?.deliveryType == 'pickup'){
-        this.deliveryHoursOptions[0].cost = 0
-      }
+      
+      
     }
     this.buildForm()
+   
 
     this.fullDateStringField?.valueChanges.subscribe(data=>{
 
-      if(this.shoppingCart != null){
+      if(this.shoppingCart != undefined){
         let deliveryDate = this.optionDeliveryDate.find(date=>date.fullDateString == data)
         this.shoppingCart.deliveryTime = deliveryDate
         this.outUpdateShoppingCart(this.shoppingCart)
@@ -64,7 +63,7 @@ export class LocationShoppingCartComponent implements OnInit {
     })
 
     this.selectionLocationField?.valueChanges.subscribe(dataLocation=>{
-      this.switchDeliveryLocation(dataLocation)
+      this.switchDeliveryLocation(dataLocation, 'input')
     })
 
     
@@ -83,17 +82,19 @@ export class LocationShoppingCartComponent implements OnInit {
  
   deliveryHours: number[] = []
 
-  deliveryHoursOptions: DeliveryHours[] = [
-    {
-      hoursNumber: 0,
-      hourRange: '1 hora o menos' ,
-      hourStart: '' ,
-      hourFinish: '',
-      typeDeliveryHours: 'express',
-      cost:50,
-      routeType: null,
-      status: 'enable'
+  deleryHourExpress :DeliveryHours = {
+    hoursNumber: 0,
+    hourRange: '1 hora o menos' ,
+    hourStart: '' ,
+    hourFinish: '',
+    typeDeliveryHours: 'express',
+    cost:50,
+    routeType: null,
+    status: 'enable'
 }
+
+  deliveryHoursOptions: DeliveryHours[] = [
+    
   ];
 
   dayWeekList: { number:number, name:string}[] = [
@@ -148,21 +149,28 @@ export class LocationShoppingCartComponent implements OnInit {
     private _bottomSheet : MatBottomSheet,
   ) {
     this.optionDeliveryDate = this.makeDateList();
-    this.formGroup = this.buildForm()
+    // this.deliveryHoursOptions = this.makeDeliveryHours('location', this.shoppingCart?.subtotal!, null, 'contructor')
+
+    
+   
+    
+
+    this.formGroup = this.buildForm();
 
   }
 
   ngOnInit(): void {
+    if(this.shoppingCart!= undefined){
+      this.deliveryHoursOptions = this.makeDeliveryHours(this.shoppingCart.deliveryType, this.shoppingCart?.subtotal, null)
+      
+    }
+    
     
 
 
     this.fullDateStringField?.valueChanges.subscribe(data=>{
-
-      if(this.shoppingCart != null){
-        let deliveryDate = this.optionDeliveryDate.find(date=>date.fullDateString == data)
-        this.shoppingCart.deliveryTime = deliveryDate
-        this.outUpdateShoppingCart(this.shoppingCart)
-      }
+      this.switchDeliveryDate(data)
+     
     })
 
     this.deliveryHoursField?.valueChanges.subscribe(dataHour=>{
@@ -172,7 +180,7 @@ export class LocationShoppingCartComponent implements OnInit {
     })
 
     this.selectionLocationField?.valueChanges.subscribe(dataLocation=>{
-      this.switchDeliveryLocation(dataLocation)  
+      this.switchDeliveryLocation(dataLocation, 'init')  
     })
   }
 
@@ -180,7 +188,7 @@ export class LocationShoppingCartComponent implements OnInit {
     this.formGroup = this.formBuilder.nonNullable.group({
       selectionLocation:[this.shoppingCart?.deliveryType == undefined ? 'location' : this.shoppingCart.deliveryType, Validators.required],
       fullDateString:[this.shoppingCart?.deliveryTime == undefined ? this.optionDeliveryDate[0].fullDateString : this.shoppingCart.deliveryTime.fullDateString, Validators.required],
-      deliveryHours:[this.shoppingCart?.deliveryHours?.hourRange == undefined ? this.deliveryHoursOptions[0].hourRange :this.shoppingCart.deliveryHours.hourRange ,Validators.required],
+      deliveryHours:[this.shoppingCart?.deliveryHours?.hourRange == undefined ? '' :this.shoppingCart.deliveryHours.hourRange ,Validators.required],
       
     })
     return this.formGroup
@@ -205,15 +213,18 @@ export class LocationShoppingCartComponent implements OnInit {
   }
   }
 
-  makeDeliveryHours(dataLoc: 'location' | 'pickup'){
-    let todayLet = new Date(2022, 0, 8 , 12,16);
-
+  makeDeliveryHours(dataLoc: 'location' | 'pickup', subtotal: number, date: string | null){
+    let todayLet: Date = date == null ?  new Date() : new Date(Date.parse(`${date}T00:00:00.000`))
     let activeHoursDay = todayLet.getHours() + 1 > this.finishHours ? false : true;
 
     let rangeHour = Array.from({length: 21-8}, (f,g)=>g + 8);
     let minutesNow = new Date().getMinutes()
     let hourNow = todayLet.getMinutes() > 15 ? todayLet.getHours() + 2 : todayLet.getHours() + 1
 
+
+    this.deleryHourExpress.cost = dataLoc == 'pickup' || subtotal > 299  ? 0: 50,
+    this.deliveryHoursOptions = []
+    this.deliveryHoursOptions.push(this.deleryHourExpress)
 
     
     if(activeHoursDay){       
@@ -227,7 +238,7 @@ export class LocationShoppingCartComponent implements OnInit {
             hourStart: '' ,
             hourFinish: '',
             typeDeliveryHours:  'cost',
-            cost: dataLoc == 'location' ? 30: 0,
+            cost: dataLoc == 'pickup' || subtotal > 299  ? 0: 30,
             routeType: null,
             status:  hourNow > hours ? 'disabled' : 'enable'
         }
@@ -244,7 +255,7 @@ export class LocationShoppingCartComponent implements OnInit {
             hourStart: hourStart ,
             hourFinish: hourFinish,
             typeDeliveryHours:  'cost',
-            cost: dataLoc == 'location' ? 30: 0,
+            cost: dataLoc == 'pickup' || subtotal > 299  ? 0: 30,
             routeType: null,
             status:  'enable'
         }
@@ -255,7 +266,8 @@ export class LocationShoppingCartComponent implements OnInit {
     return this.deliveryHoursOptions
   }
   switchDeliveryHours(dataHours:string){
-    if(this.shoppingCart != null){
+   
+    if(this.shoppingCart != undefined){
       let horsField = this.deliveryHoursOptions.find(option=> dataHours == option.hourRange)
       if(horsField != undefined){
         this.shoppingCart.deliveryHours = horsField
@@ -266,7 +278,7 @@ export class LocationShoppingCartComponent implements OnInit {
     }
   }
 
-  switchDeliveryLocation(dataLoc: 'location' | 'pickup'){
+  switchDeliveryLocation(dataLoc: 'location' | 'pickup', zone:string){
     if (this.shoppingCart != null){
       this.shoppingCart.deliveryType = dataLoc;
       if (dataLoc == 'pickup'){
@@ -278,18 +290,26 @@ export class LocationShoppingCartComponent implements OnInit {
       } else{
         this.deliveryHoursOptions.forEach(hhhour=>{
           if(hhhour.hourRange == '1 hora o menos'){
-            hhhour.cost = 50
+            hhhour.cost = this.shoppingCart?.subtotal! > 299 ? 0 : 50
           }else {
-            hhhour.cost = 30
+            hhhour.cost = this.shoppingCart?.subtotal! > 299 ? 0 : 30
           }
-        })
-        let costDeliverySwi = this.deliveryHoursOptions.find(deli=>deli.hourRange == this.deliveryHoursField?.value)?.cost!
-        this.shoppingCart.costDelivery = costDeliverySwi
-        this.shoppingCart.total = this.shoppingCart.subtotal + costDeliverySwi 
+        }) 
       }
       this.outUpdateShoppingCart(this.shoppingCart)
     }
     
+  }
+
+  switchDeliveryDate(fullDateStrin:string){
+    if(this.shoppingCart != undefined){
+      let deliveryDate = this.optionDeliveryDate.find(date=>date.fullDateString == fullDateStrin)
+      this.shoppingCart.deliveryTime = deliveryDate
+      let makeDateString = `${fullDateStrin}`
+      this.makeDeliveryHours(this.shoppingCart.deliveryType, this.shoppingCart.subtotal,makeDateString)
+      this.outUpdateShoppingCart(this.shoppingCart)
+    }
+
   }
 
   makeDateList(){
@@ -311,7 +331,7 @@ export class LocationShoppingCartComponent implements OnInit {
         let textMonth = new Date(year, monthToday, dayToday + day).getMonth() > 9 ? new Date(year, monthToday, dayToday + day).getMonth().toString() : `0${new Date(year, monthToday, dayToday + day).getMonth()}`;
         let yearText = `${new Date(year, monthToday, dayToday + day).getFullYear()}`;
         let numberDay = new Date(year, monthToday - 1, dayToday + day).getDay();
-        let fullDayString  = `${textDay}/${textMonth}/${yearText}`;
+        let fullDayString  = `${yearText}-${textMonth}-${textDay}`;
         this.optionDeliveryDate.push({
           day: textDay,
           month:textMonth,
@@ -334,7 +354,7 @@ export class LocationShoppingCartComponent implements OnInit {
         let textMonth = new Date(year, monthToday, dayToday + day).getMonth() > 9 ? new Date(year, monthToday, dayToday + day).getMonth().toString() : `0${new Date(year, monthToday, dayToday + day).getMonth()}`;
         let yearText = `${new Date(year, monthToday, dayToday + day).getFullYear()}`;
         let numberDay = new Date(year, monthToday - 1, dayToday + day).getDay();
-        let fullDayString  = `${textDay}/${textMonth}/${yearText}`;
+        let fullDayString  = `${yearText}-${textMonth}-${textDay}`;
         this.optionDeliveryDate.push({
           day: textDay,
           month:textMonth,
@@ -350,7 +370,6 @@ export class LocationShoppingCartComponent implements OnInit {
         })
       })
       }
-      console.log(this.optionDeliveryDate)
       return this.optionDeliveryDate
 
     }
@@ -368,6 +387,6 @@ export class LocationShoppingCartComponent implements OnInit {
     }
 
     goPrueba(){
-      console.log(this.formGroup.value)
+      console.log(this.formGroup.value, 'pon link a whatsapp')
     }
 }
